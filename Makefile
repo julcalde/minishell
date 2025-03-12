@@ -4,9 +4,8 @@ SRCS = main.c
 
 OBJS = $(SRCS:.c=.o)
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -g -lreadline
 all: $(NAME)
 
 $(NAME): $(OBJS)

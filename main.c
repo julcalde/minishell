@@ -6,24 +6,13 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 18:13:02 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/12 21:26:34 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/12 23:48:28 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	handle_input(char *line)
-{
-	char		**tokens;
-	int			i;
-
-	i = 0;
-	tokens[i] = strtok(line, " ");
-	while (tokens[i++])
-		tokens[i] = strtok(NULL, " ");
-	if (tokens[0])
-		exe_cmd(tokens);
-}
+t_env	g_shell;
 
 int	main(int argc, char **argv, char **env)
 {
@@ -31,6 +20,9 @@ int	main(int argc, char **argv, char **env)
 
 	(void)argc;
 	(void)argv;
+	g_shell.envp = env;
+	g_shell.exit_status = 0;
+	g_shell.sigint_detected = false;
 	while (1)
 	{
 		line = readline("$fildirame$> ");
@@ -40,8 +32,10 @@ int	main(int argc, char **argv, char **env)
 			break ;
 		}
 		if (*line)
+		{
 			add_history(line);
-		handle_input(line);
+			handle_input(line);
+		}
 		printf("%s\n", line);
 		free(line);
 	}

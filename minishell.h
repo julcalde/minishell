@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 18:08:50 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/12 19:43:41 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/12 20:27:09 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,12 @@
 # include <stdio.h>
 # include <stdbool.h>
 # include <signal.h>
+# include <fcntl.h>
+# include <string.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+// # include <sys/wait.h>
+// # include <sys/ioctl.h>
 
 /* s_env
 ** envp: Environment variables

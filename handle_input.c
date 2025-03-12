@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 22:08:59 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/12 23:24:26 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/12 23:42:05 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 ** @tokens: Pointer to the s_tokens struct to store the tokens
 ** (error handling in case of missing space: TODO)
 */
-static bool	tokenize_input(char *line, t_tokens *tokens)
+bool	tokenize_input(char *line, t_tokens *tokens)
 {
 	char	*token;
 	int		i;
@@ -49,7 +49,7 @@ static bool	tokenize_input(char *line, t_tokens *tokens)
 ** @tokens: Pointer to the s_tokens struct containig tokens.
 ** (to improve for larger variety of commands)
 */
-static void	execute_command(t_tokens *tokens)
+void	execute_command(t_tokens *tokens)
 {
 	if (!tokens || !tokens->tokens || !tokens->tokens[0])
 		return ;
@@ -72,7 +72,7 @@ static void	execute_command(t_tokens *tokens)
 ** Frees the malloc for tokens
 ** @tokens: Pointer to the s_tokens struct containing the tokens
 */
-static void	free_tokens(t_tokens *tokens)
+void	free_tokens(t_tokens *tokens)
 {
 	int	i;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_input.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 22:08:59 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/12 23:42:05 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/13 14:12:34 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	execute_command(t_tokens *tokens)
 {
 	if (!tokens || !tokens->tokens || !tokens->tokens[0])
 		return ;
+	//we can replace with the token system instead of strcmp 
 	if (ft_strcmp(tokens->tokens[0], "echo") == 0)
 	{
 		while (*tokens->tokens)
@@ -103,5 +104,6 @@ void	handle_input(char *line)
 		return ;
 	}
 	execute_command(&tokens);
-	free_tokens(&tokens);
+			//this free is causing the seg fault
+	// free_tokens(&tokens);
 }

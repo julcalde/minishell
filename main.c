@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 18:13:02 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/12 23:48:28 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/13 14:12:45 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	main(int argc, char **argv, char **env)
 			add_history(line);
 			handle_input(line);
 		}
-		printf("%s\n", line);
 		free(line);
 	}
 	return (0);

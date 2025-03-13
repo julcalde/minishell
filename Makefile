@@ -7,7 +7,7 @@ OBJS = $(SRCS:.c=.o)
 INLCUDES = -I.
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 LDFLAGS = -lreadline
 
 all: $(NAME)

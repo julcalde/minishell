@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:32:15 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/17 18:20:18 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/17 18:36:02 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@
 # include <sys/wait.h>
 # include <errno.h>
 
-/*
-** Environment variable structure
+/* Environment variable structure
+** key: stores the name of the environment variable (e.g. "PATH").
+** value: stores the value of the env variable (e.g. "/usr/bin:/bin").
+** next: pointer to the next node in the linked list.
 */
 typedef struct s_env
 {
@@ -34,8 +36,11 @@ typedef struct s_env
 	struct s_env	*next;
 }	t_env;
 
-/*
-** AST node structure
+/* AST node structure
+** command: stores the command to execute (e.g. "ls").
+** args: stores the arguments for the command in an array (e.g. ["ls", "-l"]).
+** left: points to left child node in AST. Used for pipelining or redirecting.
+** right: points to right child node in AST. Used for pipelining or redirecting.
 */
 typedef struct s_ast
 {
@@ -46,7 +51,7 @@ typedef struct s_ast
 }	t_ast;
 
 
-// INIT.C
+// INIT.C: Functions for initializing the shell.
 /* The init_env function initializes a linked list of environment variables by:
 ** parsing an array of strings into key-value pairs.
 ** dynamically allocating memory for each node.

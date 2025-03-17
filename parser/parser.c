@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/14 16:32:07 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/17 17:41:30 by julcalde         ###   ########.fr       */
+/*   Created: 2025/03/17 17:39:47 by julcalde          #+#    #+#             */
+/*   Updated: 2025/03/17 17:41:17 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-void	init_env(t_env **env, char **envp)
+t_ast	*parse_input(char **tokens)
 {
-	t_env	*new_node;
-	char	*key;
-	char	*value;
+	t_ast	*ast;
 
-	while (*envp)
-	{
-		key = strtok(*envp, " ");
-		value = strtok(NULL, " ");
-		new_node = malloc(sizeof(t_env));
-		if (!new_node)
-			perr_exit("malloc new_node failed\n");
-		new_node->key = ft_strdup(key);
-		new_node->value = ft_strdup(value);
-		new_node->next = *env;
-		*env = new_node;
-		envp++;
-	}
+	ast = malloc(sizeof(t_ast));
+	if (!ast)
+		perr_exit("malloc ast failed\n");
 }

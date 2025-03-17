@@ -6,9 +6,15 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:39:52 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/14 16:43:57 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:29:42 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
+void	perr_exit(char *str)
+{
+	write (2, "Error: ", 7);
+	perror(str);
+	exit(EXIT_FAILURE);
+}

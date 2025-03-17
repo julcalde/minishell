@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:32:07 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/14 16:49:52 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:33:05 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@ void	init_env(t_env **env, char **envp)
 		value = strtok(NULL, " ");
 		new_node = malloc(sizeof(t_env));
 		if (!new_node)
-		{
-			perror("$fildirame$> malloc failed\n");
-			exit(EXIT_FAILURE);
-		}
+			perr_exit("$fildirame$> malloc failed\n");
 		new_node->key = ft_strdup(key);
 		new_node->value = ft_strdup(value);
 		new_node->next = *env;

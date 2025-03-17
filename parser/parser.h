@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:32:15 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/14 16:55:01 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:35:43 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,17 @@ typedef struct s_ast
 */
 void	init_env(t_env **env, char **envp);
 
+
+// Functions input.c
+char	*read_input(void);
+void	add_history(char *input);
+
 // Functions libft_utils.c
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s1);
 int		ft_strcmp(char *s1, char *s2);
+
+// Functions utils.c
+void	perr_exit(char *err_msg);
 
 #endif

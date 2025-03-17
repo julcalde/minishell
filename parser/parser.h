@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:32:15 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/17 16:35:43 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/17 17:15:34 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ void	init_env(t_env **env, char **envp);
 // Functions input.c
 char	*read_input(void);
 void	add_history(char *input);
+
+// Functions tokenizer.c
+char	**tokenize_input(char *input);
 
 // Functions libft_utils.c
 size_t	ft_strlen(const char *s);

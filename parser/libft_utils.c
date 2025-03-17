@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:46:23 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/14 16:49:29 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/17 17:14:50 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*ft_strdup(const char *s1)
 	i = ft_strlen(s1);
 	dupe = malloc(sizeof(char) * (i + 1));
 	if (!dupe)
-		return (NULL);
+		perr_exit("malloc failed\n");
 	while (s1[c])
 	{
 		dupe[c] = s1[c];

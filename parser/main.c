@@ -6,12 +6,18 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:26:09 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/14 16:31:08 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/18 19:38:17 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
+/* The main function initializes the shell environment in t_env *env,
+* sets up signal handling with set_sigs(), and enters the shell loop.
+* The shell loop reads user input, parses it into an AST, and executes it
+* until the user exits the shell.
+* The shell environment is cleaned up with cleanup() before exiting.
+*/
 int	main(int argc, char **argv, char **envp)
 {
 	t_env	*env;
@@ -20,6 +26,7 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	init_env(&env, envp);
+	set_sigs();
 	shell_loop(env);
 	cleanup(env, NULL);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:32:15 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/17 18:36:02 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/18 19:30:37 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,15 @@ void	handle_err(t_ast *ast);
 // UTILS.C: Utility functions.
 /* Handles custom error messages and exit using EXIT_FAILURE */
 void	perr_exit(char *err_msg);
+
+
+// SIGNALS.C: Functions for handling signals.
+/* Sets up signal handling for SIGQUIT and SIGINT */
+void	set_sigs(void);
+/* Handles SIGQUIT signal (CTRL+\) */
+void	handle_sigquit(int sig);
+/* Handles SIGINT signal (CTRL+C) */
+void	handle_sigint(int sig);
 
 
 /* Helper functions libft_utils.c */

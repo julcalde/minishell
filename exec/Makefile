@@ -1,6 +1,6 @@
 NAME = exec
 
-SRCS = libft_utils.c tokenization.c main.c
+SRCS = libft_utils.c tokenization.c main.c execute_commands.c
 
 OBJS = $(SRCS:.c=.o)
 

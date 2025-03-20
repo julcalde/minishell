@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 19:23:08 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/20 20:17:19 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/20 20:27:16 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	shell_loop(t_env *env)
 		tokens = tokenize_input(input);
 		ast = parse_input(tokens);
 		handle_err(ast);
-		exec_cmd(ast, env);
+		exec_cmd(ast, env); // this function is not yet implemented
 		free(input);
 		free(tokens);
 		cleanup(env, ast);

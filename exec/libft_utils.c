@@ -6,7 +6,7 @@
 /*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:46:23 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/18 10:30:12 by fileonar         ###   ########.fr       */
+/*   Updated: 2025/03/21 00:46:33 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,30 @@ int	ft_strcmp(char *s1, char *s2)
 	while (s1[i] && s2[i] && (s1[i] == s2[i]))
 		i++;
 	return (s1[i] - s2[i]);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	int		i;
+	int		n;
+	char	*s3;
+
+	n = 0;
+	i = 0;
+	s3 = malloc (ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (s3 == NULL)
+		return (NULL);
+	while (s1[i] != '\0')
+	{
+		s3[i] = s1[i];
+		i++;
+	}
+	while (s2[n] != '\0')
+	{
+		s3[i] = s2[n];
+		n++;
+		i++;
+	}
+	s3[i] = '\0';
+	return (s3);
 }

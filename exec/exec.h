@@ -6,7 +6,7 @@
 /*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 18:33:32 by fileonar          #+#    #+#             */
-/*   Updated: 2025/03/20 20:45:58 by fileonar         ###   ########.fr       */
+/*   Updated: 2025/03/21 00:46:42 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_tokens
 char	*ft_strdup(const char *s1);
 int	ft_strcmp(char *s1, char *s2);
 size_t	ft_strlen(const char *s);
+char	*ft_strjoin(char const *s1, char const *s2);
 
 //tokenaization julio
 char	**tokenize_input(char *input);

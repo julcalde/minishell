@@ -6,12 +6,13 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:39:47 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/17 17:45:12 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/20 20:02:50 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
+/* Parses tokens into an AST.*/
 t_ast	*parse_input(char **tokens)
 {
 	t_ast	*ast;
@@ -26,6 +27,7 @@ t_ast	*parse_input(char **tokens)
 	return (ast);
 }
 
+/* Handles syntax errors in the parsed input. */
 void	handle_err(t_ast *ast)
 {
 	if (!ast || !ast->command)

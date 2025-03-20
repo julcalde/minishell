@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:32:15 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/18 19:30:37 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/20 20:19:04 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <signal.h>
 # include <unistd.h>
 # include <string.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include <signal.h>
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <errno.h>
@@ -51,50 +51,44 @@ typedef struct s_ast
 }	t_ast;
 
 
-// INIT.C: Functions for initializing the shell.
-/* The init_env function initializes a linked list of environment variables by:
-** parsing an array of strings into key-value pairs.
-** dynamically allocating memory for each node.
-*/
+// INIT.C: Initializes the shell environment.
+
 void	init_env(t_env **env, char **envp);
 
 
 // INPUT.C: Functions for reading and handling user input.
-/* Reads input from the user using readline and handles EOF */
+
 char	*read_input(void);
-/* Adds non-empty input to the command history */
-void	add_history(char *input);
+void	add_to_history(char *input);
 
 
-// TOKENIZER.C: Functions for tokenizing user input.
-/* Splits user input into tokens.
-** tokens_counter: counts the number of tokens in the input.
-** tokens_allocer: allocates memory for the tokens array based on token count.
-** tokens_filler: fills the tokens array with actual tokens.
-** tokenize_input: calls the above functions to tokenize the input.
-*/
-char	**tokenize_input(char *input);
+// LOOP.C: Core minishell loop.
+
+void	shell_loop(t_env *env);
 
 
 // PARSER.C: Parses tokens into an Abstract Syntax Tree (AST)
-/* Parses tokens into an AST.*/
+
 t_ast	*parse_input(char **tokens);
-/* Handles syntax errors in the parsed input.*/
 void	handle_err(t_ast *ast);
 
 
-// UTILS.C: Utility functions.
-/* Handles custom error messages and exit using EXIT_FAILURE */
-void	perr_exit(char *err_msg);
-
-
 // SIGNALS.C: Functions for handling signals.
-/* Sets up signal handling for SIGQUIT and SIGINT */
-void	set_sigs(void);
-/* Handles SIGQUIT signal (CTRL+\) */
-void	handle_sigquit(int sig);
-/* Handles SIGINT signal (CTRL+C) */
+
 void	handle_sigint(int sig);
+void	handle_sigquit(int sig);
+void	set_sigs(void);
+
+
+// TOKENIZER.C: Functions for tokenizing user input.
+
+char	**tokenize_input(char *input);
+
+
+// UTILS.C: Utility functions.
+
+void	perr_exit(char *err_msg);
+void	ft_free_array(char **array);
 
 
 /* Helper functions libft_utils.c */

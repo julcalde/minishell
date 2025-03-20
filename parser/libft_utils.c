@@ -6,12 +6,13 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:46:23 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/17 17:42:00 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/20 19:55:14 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
+/* Check 'man strlen' */
 size_t	ft_strlen(const char *s)
 {
 	size_t	i;
@@ -22,6 +23,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
+/* Check 'man strdup' */
 char	*ft_strdup(const char *s1)
 {
 	char	*dupe;
@@ -41,7 +43,7 @@ char	*ft_strdup(const char *s1)
 	dupe[c] = '\0';
 	return (dupe);
 }
-
+/* Check 'man strcmp' */
 int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;

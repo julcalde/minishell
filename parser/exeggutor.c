@@ -6,14 +6,14 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:11:29 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/25 16:46:10 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/25 18:33:10 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
 /* Check if a command is a built-in. */
-static int	is_builtin(char *command)
+int	is_builtin(char *command)
 {
 	if (!ft_strcmp(command, "echo"))
 		return (1);
@@ -40,7 +40,7 @@ static int	is_builtin(char *command)
 ** unset: arguments allowed (variable names).
 ** env: no options or arguments allowed.
 ** exit: no options allowed. */
-static int	validate_builtin(t_ast *ast)
+int	validate_builtin(t_ast *ast)
 {
 	if (!ft_strcmp(ast->command, "echo"))
 		return (1);
@@ -60,7 +60,7 @@ static int	validate_builtin(t_ast *ast)
 }
 
 /* Built-in execution. */
-static void	exec_builtin(t_ast *ast, t_env *env)
+void	exec_builtin(t_ast *ast, t_env *env)
 {
 	(void) env;
 	printf("(valid built-in: %s)\n", ast->command);
@@ -69,29 +69,32 @@ static void	exec_builtin(t_ast *ast, t_env *env)
 		// ft_echo(ast);
 }
 
-static void	external_cmd_exe(t_ast *ast, t_env *env)
+/* Executes external commands. */
+void	external_cmd_exe(t_ast *ast, t_env *env)
 {
 	pid_t	pid;
 	char	*path;
 	char	**env_array;
 
-	path = get_path(ast->command, env); // todo: implement get_path
+	path = get_path(ast->command, env);
 	if (!path)
 	{
+		write (2, "$fildirame$> ", 14);
+		write (2, ast->command, ft_strlen(ast->command));
 		write (2, "command not found\n", 19);
 		return ;
 	}
-	env_array = env_to_array(env); // todo: implement env_to_array
+	env_array = env_to_array(env);
 	pid = fork();
 	if (pid == 0)
 	{
-		execvp(ast->command, ast->args);
-		perr_exit("execvp");
+		execve(path, ast->args, env_array);
+		perr_exit("execvp failed");
 	}
 	else if (pid > 0)
 		waitpid(pid, NULL, 0);
 	else
-		write (2, "fork\n", 6);
+		write (2, "$fildirame$> fork failed\n", 26);
 	free(path);
 	ft_free_array(env_array);
 }

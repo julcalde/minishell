@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:39:52 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/20 19:52:04 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/25 16:33:28 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 /* Handles custom error messages and exits using EXIT_FAILURE */
 void	perr_exit(char *err_msg)
 {
-	write (2, "Error: ", 8);
-	perror(err_msg);
+	write (2, "Error: ", 8); // to update later
+	write (2, err_msg, ft_strlen(err_msg));
+	write (2, "\n", 1);
 	exit(EXIT_FAILURE);
 }
 

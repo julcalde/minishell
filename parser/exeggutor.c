@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:11:29 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/25 16:06:11 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/25 16:12:07 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,14 @@ static int	validate_builtin(t_ast *ast)
 	return (0);
 }
 
+/* Built-in execution. */
 static void	exec_builtin(t_ast *ast, t_env *env)
 {
 	(void) env;
 	printf("(valid built-in: %s)\n", ast->command);
-
-	// Actual implementation of built-in commands goes here or other file(s).
+	// Example with echo built-in:
+	// if (ft_strcmp(ast->command, "echo") == 0)
+		// ft_echo(ast);
 }
 
 static void	external_cmd_exe(t_ast *ast)

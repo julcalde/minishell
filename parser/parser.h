@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:32:15 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/25 18:32:54 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/25 19:13:40 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,11 @@ typedef struct s_ast
 	struct s_ast	*left;
 	struct s_ast	*right;
 }	t_ast;
+
+
+// CLEANER.C: clean-up function for freeing memory at the end.
+
+void	cleanup(t_env *env, t_ast *ast);
 
 
 // EXEGGCUTE_UTILS.C: Utility functions for executing commands.

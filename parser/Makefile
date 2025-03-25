@@ -1,14 +1,25 @@
-NAME = parser
+NAME =	parser
 
-SRCS = main.c init.c libft_utils.c utils.c
+SRCS =	main.c \
+		exeggcute_utils.c \
+		exeggutor.c \
+		init.c \
+		input.c \
+		libft_utils.c \
+		libft_utils_moar.c \
+		loop.c \
+		parser.c \
+		signals.c \
+		tokenizer.c \
+		utils.c
 
-OBJS = $(SRCS:.c=.o)
+OBJS =	$(SRCS:.c=.o)
 
-INLCUDES = -I.
+INLCUDES =	-I.
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
-LDFLAGS = -lreadline
+CC =	gcc
+CFLAGS =	-Wall -Wextra -Werror -g
+LDFLAGS =	-lreadline
 
 all: $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:32:15 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/20 20:19:04 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/25 18:32:54 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <signal.h>
 # include <unistd.h>
 # include <string.h>
+# include <fcntl.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <sys/types.h>
@@ -49,6 +50,23 @@ typedef struct s_ast
 	struct s_ast	*left;
 	struct s_ast	*right;
 }	t_ast;
+
+
+// EXEGGCUTE_UTILS.C: Utility functions for executing commands.
+
+int		is_executable(char *path);
+char	*join_path(char *dir, char *cmd);
+char	*get_path(char *cmd, t_env *env);
+char	**env_to_array(t_env *env);
+
+
+// EXEGGUTOR.C: Functions for executing commands.
+
+int		is_builtin(char *command);
+int		validate_builtin(t_ast *ast);
+void	exec_builtin(t_ast *ast, t_env *env);
+void	external_cmd_exe(t_ast *ast, t_env *env);
+void	exec_cmd(t_ast *ast, t_env *env);
 
 
 // INIT.C: Initializes the shell environment.
@@ -91,10 +109,15 @@ void	perr_exit(char *err_msg);
 void	ft_free_array(char **array);
 
 
-/* Helper functions libft_utils.c */
+/* Helper functions libft_utils.c and libft_utils_moar.c */
 
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s1);
 int		ft_strcmp(char *s1, char *s2);
+char	*ft_strchr(const char *s, int c);
+char	*ft_strtok(char *str, const char *delim);
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
+char	*ft_strjoin(char const *s1, char const *s2);
 
 #endif

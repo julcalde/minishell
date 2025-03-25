@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:11:29 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/25 16:12:07 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/25 16:46:10 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,20 +69,31 @@ static void	exec_builtin(t_ast *ast, t_env *env)
 		// ft_echo(ast);
 }
 
-static void	external_cmd_exe(t_ast *ast)
+static void	external_cmd_exe(t_ast *ast, t_env *env)
 {
 	pid_t	pid;
+	char	*path;
+	char	**env_array;
 
+	path = get_path(ast->command, env); // todo: implement get_path
+	if (!path)
+	{
+		write (2, "command not found\n", 19);
+		return ;
+	}
+	env_array = env_to_array(env); // todo: implement env_to_array
 	pid = fork();
 	if (pid == 0)
 	{
 		execvp(ast->command, ast->args);
-		perr_exit("execvp"); // to modify after test with "$fildirame$"
+		perr_exit("execvp");
 	}
 	else if (pid > 0)
 		waitpid(pid, NULL, 0);
 	else
-		write (2, "fork", 5); // to modify after test with "$fildirame$"
+		write (2, "fork\n", 6);
+	free(path);
+	ft_free_array(env_array);
 }
 
 /* Main execution function. */

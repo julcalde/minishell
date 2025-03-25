@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 16:23:41 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/20 19:56:28 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/25 16:55:21 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ static int	tokens_counter(char *input)
 
 	count = 0;
 	tmp = ft_strdup(input);
-	token = strtok(tmp, " \t\r\n\a");
+	token = ft_strtok(tmp, " \t\r\n\a");
 	while (token)
 	{
 		count++;
-		token = strtok(NULL, " \t\r\n\a");
+		token = ft_strtok(NULL, " \t\r\n\a");
 	}
 	free(tmp);
 	return (count);
@@ -36,7 +36,7 @@ static char	**tokens_allocer(int count)
 
 	tokens = malloc(sizeof(char *) * (count + 1));
 	if (!tokens)
-		perr_exit("malloc failed\n");
+		perr_exit("malloc failed");
 	return (tokens);
 }
 
@@ -46,11 +46,11 @@ static void	tokens_filler(char **tokens, char *input)
 	int		i;
 
 	i = 0;
-	token = strtok(input, " \t\r\n\a");
+	token = ft_strtok(input, " \t\r\n\a");
 	while (token)
 	{
 		tokens[i++] = ft_strdup(token);
-		token = strtok(NULL, " \t\r\n\a");
+		token = ft_strtok(NULL, " \t\r\n\a");
 	}
 	tokens[i] = NULL;
 }

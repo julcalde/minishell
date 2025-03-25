@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:32:07 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/25 16:56:13 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/25 18:35:05 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	init_env(t_env **env, char **envp)
 
 	while (*envp)
 	{
-		key = ft_strtok(*envp, " ");
-		value = ft_strtok(NULL, " ");
+		key = ft_strtok(*envp, "=");
+		value = ft_strtok(NULL, "=");
 		new_node = malloc(sizeof(t_env));
 		if (!new_node)
 			perr_exit("malloc new_node failed");

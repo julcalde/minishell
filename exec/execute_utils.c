@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exeggcute_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 16:48:27 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/25 18:34:09 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/28 16:00:21 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "exec.h"
 
 /* Check if file exists and is executable. */
 int	is_executable(char *path)
@@ -48,6 +48,7 @@ char	*get_path(char *cmd, t_env *env)
 	char	*full_path;
 	char	*path_copy;
 
+	(void)env;
 	if (ft_strchr(cmd, '/'))
 		return (ft_strdup(cmd));
 	path = getenv("PATH");

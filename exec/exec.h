@@ -6,7 +6,7 @@
 /*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 18:33:32 by fileonar          #+#    #+#             */
-/*   Updated: 2025/03/21 00:46:42 by fileonar         ###   ########.fr       */
+/*   Updated: 2025/03/28 17:46:32 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,12 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <errno.h>
+# include "../parser/parser.h"
 
+/* s_token
+** @t_input: input string
+** @tokens: array of tokens
+*/
 typedef struct s_tokens
 {
 	char	*t_input;
@@ -35,9 +40,27 @@ int	ft_strcmp(char *s1, char *s2);
 size_t	ft_strlen(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
 
-//tokenaization julio
-char	**tokenize_input(char *input);
+// EXEGGCUTE_UTILS.C: Utility functions for executing commands.
+
+int		is_executable(char *path);
+char	*join_path(char *dir, char *cmd);
+char	*get_path(char *cmd, t_env *env);
+char	**env_to_array(t_env *env);
+
+
+// EXEGGUTOR.C: Functions for executing commands.
+
+int		is_builtin(char *command);
+int		validate_builtin(t_ast *ast);
+void	exec_builtin(t_ast *ast, t_env *env);
+void	external_cmd_exe(t_ast *ast, t_env *env);
+void	exec_cmd(t_ast *ast, t_env *env);
+
 
 void	execute_command(char	**tokens);
+
+
+//BUILTINS.C: Built-in functions.
+int ft_echo(t_ast *ast);
 #endif
 

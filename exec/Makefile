@@ -1,8 +1,15 @@
 NAME = exec
 
-SRCS = libft_utils.c tokenization.c main.c execute_commands.c
+SRCS = builtins.c \
+	execute_commands.c \
+	execute_utils.c \
+	executor.c \
 
-OBJS = $(SRCS:.c=.o)
+PARSER_SRCS = ../parser/libft_utils.c \
+			../parser/libft_utils_moar.c \
+			../parser/utils.c
+
+OBJS = $(SRCS:.c=.o) $(PARSER_SRCS:.c=.o)
 
 
 CC = gcc

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 19:23:08 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/20 20:27:16 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/28 16:31:44 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "minishell.h"
 
 /* Core minishell loop:
 ** calls set_sigs() to configure signal handlers.
@@ -27,6 +27,7 @@ void	shell_loop(t_env *env)
 	char	**tokens;
 	t_ast	*ast;
 
+	(void)env;
 	set_sigs();
 	while (1)
 	{
@@ -41,6 +42,6 @@ void	shell_loop(t_env *env)
 		exec_cmd(ast, env); // this function is not yet implemented
 		free(input);
 		free(tokens);
-		cleanup(env, ast);
+		// cleanup(env, ast);
 	}
 }

@@ -5,38 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/06 18:13:02 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/13 14:12:45 by fileonar         ###   ########.fr       */
+/*   Created: 2025/03/14 16:26:09 by julcalde          #+#    #+#             */
+/*   Updated: 2025/03/28 16:26:57 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_env	g_shell;
-
-int	main(int argc, char **argv, char **env)
+/* The main function initializes the shell environment in t_env *env
+* and enters the shell loop.
+* The shell loop sets the signals handlers, reads user input, parses it into
+* an AST, and executes it until the user exits the shell.
+* The shell environment is cleaned up with cleanup() before exiting.
+*/
+int	main(int argc, char **argv, char **envp)
 {
-	char	*line;
+	t_env	*env;
 
+	env = NULL;
 	(void)argc;
 	(void)argv;
-	g_shell.envp = env;
-	g_shell.exit_status = 0;
-	g_shell.sigint_detected = false;
-	while (1)
-	{
-		line = readline("$fildirame$> ");
-		if (!line)
-		{
-			printf("exit\n");
-			break ;
-		}
-		if (*line)
-		{
-			add_history(line);
-			handle_input(line);
-		}
-		free(line);
-	}
+	init_env(&env, envp);
+	shell_loop(env);
+	// cleanup(env, NULL);
 	return (0);
 }

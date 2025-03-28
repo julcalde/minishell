@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:46:23 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/25 19:01:30 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/28 15:53:21 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ char	*ft_strdup(const char *s1)
 	int		c;
 	size_t	i;
 
+	if (!s1)
+		return (NULL);
 	c = 0;
 	i = ft_strlen(s1);
 	dupe = malloc(sizeof(char) * (i + 1));

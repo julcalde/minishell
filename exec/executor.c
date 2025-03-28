@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exeggutor.c                                        :+:      :+:    :+:   */
+/*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:11:29 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/25 18:33:10 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/28 17:47:05 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "exec.h"
 
 /* Check if a command is a built-in. */
 int	is_builtin(char *command)
@@ -63,10 +63,10 @@ int	validate_builtin(t_ast *ast)
 void	exec_builtin(t_ast *ast, t_env *env)
 {
 	(void) env;
-	printf("(valid built-in: %s)\n", ast->command);
+	// printf("(valid built-in: %s)\n", ast->command);
 	// Example with echo built-in:
-	// if (ft_strcmp(ast->command, "echo") == 0)
-		// ft_echo(ast);
+	if (ft_strcmp(ast->command, "echo") == 0)
+		ft_echo(ast);
 }
 
 /* Executes external commands. */
@@ -76,6 +76,7 @@ void	external_cmd_exe(t_ast *ast, t_env *env)
 	char	*path;
 	char	**env_array;
 
+	(void)env;
 	path = get_path(ast->command, env);
 	if (!path)
 	{
@@ -112,5 +113,5 @@ void	exec_cmd(t_ast *ast, t_env *env)
 			write (2, "invalid arguments\n", 19);
 	}
 	else
-		external_cmd_exe(ast);
+		external_cmd_exe(ast, env);
 }

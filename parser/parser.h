@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:32:15 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/25 18:32:54 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/28 16:24:03 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,22 +51,6 @@ typedef struct s_ast
 	struct s_ast	*right;
 }	t_ast;
 
-
-// EXEGGCUTE_UTILS.C: Utility functions for executing commands.
-
-int		is_executable(char *path);
-char	*join_path(char *dir, char *cmd);
-char	*get_path(char *cmd, t_env *env);
-char	**env_to_array(t_env *env);
-
-
-// EXEGGUTOR.C: Functions for executing commands.
-
-int		is_builtin(char *command);
-int		validate_builtin(t_ast *ast);
-void	exec_builtin(t_ast *ast, t_env *env);
-void	external_cmd_exe(t_ast *ast, t_env *env);
-void	exec_cmd(t_ast *ast, t_env *env);
 
 
 // INIT.C: Initializes the shell environment.

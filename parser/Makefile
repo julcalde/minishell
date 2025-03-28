@@ -1,8 +1,6 @@
 NAME =	parser
 
 SRCS =	main.c \
-		exeggcute_utils.c \
-		exeggutor.c \
 		init.c \
 		input.c \
 		libft_utils.c \
@@ -18,7 +16,7 @@ OBJS =	$(SRCS:.c=.o)
 INLCUDES =	-I.
 
 CC =	gcc
-CFLAGS =	-Wall -Wextra -Werror -g
+CFLAGS =	-Wall -Wextra -Werror -g -fsanitize=address
 LDFLAGS =	-lreadline
 
 all: $(NAME)

@@ -6,7 +6,7 @@
 /*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 20:34:33 by fileonar          #+#    #+#             */
-/*   Updated: 2025/03/28 17:57:34 by fileonar         ###   ########.fr       */
+/*   Updated: 2025/03/29 05:45:03 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,27 @@
 
 int	ft_echo(t_ast *ast)
 {
-	if (ast->args[1] && !ft_strcmp(ast->args[1], "-n"))
+
+	ast->args++;
+	if (ast->args && !ft_strcmp(ast->args[0], "-n"))
 	{
+		ast->args++;
 		while (*ast->args != NULL)
 		{
-			printf("%s ", ast->args[1]);
+			if (ast->args[1] == NULL)
+				printf("%s", ast->args[0]);
+			else
+				printf("%s ", ast->args[0]);
 			ast->args++;
 		}
 	}
-	else if (!ast->args[1])
+	else if (!ast->args[0])
 		printf("\n");
 	else
 	{
-		while (*ast->args != NULL)
+		while (*ast->args)
 		{
-			printf("%s ", ast->args[1]);
+			printf("%s ", ast->args[0]);
 			ast->args++;
 		}
 		printf("\n");

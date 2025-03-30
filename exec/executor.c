@@ -6,7 +6,7 @@
 /*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:11:29 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/28 17:47:05 by fileonar         ###   ########.fr       */
+/*   Updated: 2025/03/31 00:17:59 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,21 @@ void	exec_builtin(t_ast *ast, t_env *env)
 	// Example with echo built-in:
 	if (ft_strcmp(ast->command, "echo") == 0)
 		ft_echo(ast);
+	else if (ft_strcmp(ast->command, "cd") == 0)
+		ft_cd(ast);
+	// else if (ft_strcmp(ast->command, "pwd" == 0))
+	// 	ft_pwd();
+	// else if (ft_strcmp(ast->command, "export") == 0)
+	// 	ft_export(ast, env);
+	// else if (ft_strcmp(ast->command, "unset") == 0)
+	// 	ft_unset(ast, env);
+	// else if (ft_strcmp(ast->command, "env") == 0)
+	// 	ft_env(env);
+	else if (ft_strcmp(ast->command, "exit") == 0)
+	{
+		ft_exit(ast);
+	}
+	
 }
 
 /* Executes external commands. */

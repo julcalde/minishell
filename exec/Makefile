@@ -1,6 +1,7 @@
 NAME = exec
 
 SRCS = builtins.c \
+	libft_utils.c \
 	execute_commands.c \
 	execute_utils.c \
 	executor.c \

@@ -6,7 +6,7 @@
 /*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 18:33:32 by fileonar          #+#    #+#             */
-/*   Updated: 2025/03/28 17:46:32 by fileonar         ###   ########.fr       */
+/*   Updated: 2025/03/31 00:18:58 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <errno.h>
+# include <limits.h>
 # include "../parser/parser.h"
 
 /* s_token
@@ -35,10 +36,13 @@ typedef struct s_tokens
 	char	**tokens;
 }	t_tokens;
 
+//LIBFT UTILS
 char	*ft_strdup(const char *s1);
-int	ft_strcmp(char *s1, char *s2);
+int		ft_strcmp(char *s1, char *s2);
 size_t	ft_strlen(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
+int		ft_isdigit(int a);
+int		ft_atoi(const char *str);
 
 // EXEGGCUTE_UTILS.C: Utility functions for executing commands.
 
@@ -62,5 +66,7 @@ void	execute_command(char	**tokens);
 
 //BUILTINS.C: Built-in functions.
 int ft_echo(t_ast *ast);
+int ft_cd(t_ast *ast);
+int ft_exit(t_ast *ast);
 #endif
 

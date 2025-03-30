@@ -6,7 +6,7 @@
 /*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 20:34:33 by fileonar          #+#    #+#             */
-/*   Updated: 2025/03/31 00:23:01 by fileonar         ###   ########.fr       */
+/*   Updated: 2025/03/31 00:29:51 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,17 @@ int ft_exit(t_ast *ast)
 			printf("exit\n");
 			exit(1);
 		}
+}
+int ft_pwd(t_ast *ast)
+{
+	
+	ast->command = getcwd(NULL, 0);
+	if (!ast->command)
+	{
+		printf("error: %s\n", strerror(errno));
+		return (EXIT_FAILURE);
+	}
+	printf("%s\n", ast->command);
+	free(ast->command);
+	return (EXIT_SUCCESS);
 }

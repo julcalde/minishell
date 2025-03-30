@@ -6,7 +6,7 @@
 /*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 18:33:32 by fileonar          #+#    #+#             */
-/*   Updated: 2025/03/31 00:18:58 by fileonar         ###   ########.fr       */
+/*   Updated: 2025/03/31 00:27:57 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ void	execute_command(char	**tokens);
 int ft_echo(t_ast *ast);
 int ft_cd(t_ast *ast);
 int ft_exit(t_ast *ast);
+int ft_pwd(t_ast *ast);
 #endif
 

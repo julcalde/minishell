@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:11:29 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/25 18:33:10 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/30 17:45:03 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,5 @@ void	exec_cmd(t_ast *ast, t_env *env)
 			write (2, "invalid arguments\n", 19);
 	}
 	else
-		external_cmd_exe(ast);
+		external_cmd_exe(ast, env);
 }

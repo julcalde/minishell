@@ -20,7 +20,7 @@ INLCUDES =	-I.
 
 CC =	gcc
 CFLAGS =	-Wall -Wextra -Werror -g
-LDFLAGS =	-lreadline
+LDFLAGS =	-L/usr/local/opt/readline//lib -lreadline -lhistory
 
 all: $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 16:48:27 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/25 18:34:09 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/30 17:44:19 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ char	*get_path(char *cmd, t_env *env)
 	char	*full_path;
 	char	*path_copy;
 
+	(void)env;
 	if (ft_strchr(cmd, '/'))
 		return (ft_strdup(cmd));
 	path = getenv("PATH");

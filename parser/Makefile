@@ -1,6 +1,7 @@
 NAME =	parser
 
 SRCS =	main.c \
+		cleaner.c \
 		exeggcute_utils.c \
 		exeggutor.c \
 		init.c \

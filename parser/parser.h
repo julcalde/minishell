@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:32:15 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/25 19:13:40 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/30 17:27:49 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,15 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <errno.h>
+
+typedef enum e_shell_state
+{
+	SHELL_RUNNING,
+	SHELL_INTERRUPT,
+	SHELL_TERMINATE
+}	t_shell_state;
+
+extern volatile sig_atomic_t	g_shell_state;
 
 /* Environment variable structure
 ** key: stores the name of the environment variable (e.g. "PATH").
@@ -55,6 +64,8 @@ typedef struct s_ast
 // CLEANER.C: clean-up function for freeing memory at the end.
 
 void	cleanup(t_env *env, t_ast *ast);
+void	cleaner_env(t_env *env);
+void	cleaner_ast(t_ast *ast);
 
 
 // EXEGGCUTE_UTILS.C: Utility functions for executing commands.

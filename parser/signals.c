@@ -6,11 +6,13 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 18:42:31 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/20 20:01:30 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/30 17:29:00 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+
+volatile sig_atomic_t	g_shell_state = SHELL_RUNNING;
 
 /* Handle SIGINT signal:
 ** prints a newline
@@ -24,6 +26,7 @@ void	handle_sigint(int sig)
 	rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
+	g_shell_state = SHELL_INTERRUPT;
 }
 
 /* Handles SIGQUIT signal:
@@ -31,7 +34,7 @@ void	handle_sigint(int sig)
 void	handle_sigquit(int sig)
 {
 	(void)sig;
-	printf("Quit: %d\n", sig);
+	g_shell_state = SHELL_TERMINATE;
 }
 
 /* Sets up signal handlers:

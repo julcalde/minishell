@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:26:09 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/30 17:25:17 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/03/30 23:53:26 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,17 @@
 int	main(int argc, char **argv, char **envp)
 {
 	t_env	*env;
-	int		exit_status;
 
-	env = NULL;
 	(void)argc;
 	(void)argv;
+	if (!isatty(STDIN_FILENO))
+		perr_exit("Not a terminal.");
+	env = NULL;
 	g_shell_state = SHELL_RUNNING;
 	init_env(&env, envp);
 	shell_loop(env);
 	cleanup(env, NULL);
 	if (g_shell_state == SHELL_TERMINATE)
-		exit_status = EXIT_FAILURE;
-	else
-		exit_status = EXIT_SUCCESS;
-	return (exit_status);
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }

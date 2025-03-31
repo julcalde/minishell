@@ -6,7 +6,7 @@
 /*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 18:33:32 by fileonar          #+#    #+#             */
-/*   Updated: 2025/03/31 03:07:56 by fileonar         ###   ########.fr       */
+/*   Updated: 2025/03/31 03:30:55 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,8 @@ int ft_echo(t_ast *ast);
 int ft_cd(t_ast *ast,char *path);
 int ft_exit(t_ast *ast);
 int ft_pwd(t_ast *ast);
+int ft_export(t_ast *ast, t_env *env);
+int ft_unset(t_ast *ast, t_env *env);
+int ft_env(t_env *env);
 #endif
 

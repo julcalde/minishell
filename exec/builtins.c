@@ -6,7 +6,7 @@
 /*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 20:34:33 by fileonar          #+#    #+#             */
-/*   Updated: 2025/03/31 03:09:37 by fileonar         ###   ########.fr       */
+/*   Updated: 2025/03/31 03:29:50 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,14 @@ int ft_pwd(t_ast *ast)
 	}
 	printf("%s\n", ast->command);
 	free(ast->command);
+	return (EXIT_SUCCESS);
+}
+
+int ft_export(t_ast *ast, t_env *env)
+{
+	(void)ast;
+	(void)env;
+	printf("export: not implemented yet\n");
+	
 	return (EXIT_SUCCESS);
 }

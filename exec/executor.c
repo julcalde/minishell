@@ -6,7 +6,7 @@
 /*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:11:29 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/31 03:06:05 by fileonar         ###   ########.fr       */
+/*   Updated: 2025/03/31 03:30:28 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,12 @@ void	exec_builtin(t_ast *ast, t_env *env, char * path)
 		ft_cd(ast, path);
 	else if (ft_strcmp(ast->command, "pwd") == 0)
 		ft_pwd(ast);
-	// else if (ft_strcmp(ast->command, "export") == 0)
-	// 	ft_export(ast, env);
-	// else if (ft_strcmp(ast->command, "unset") == 0)
-	// 	ft_unset(ast, env);
-	// else if (ft_strcmp(ast->command, "env") == 0)
-	// 	ft_env(env);
+	else if (ft_strcmp(ast->command, "export") == 0)
+		ft_export(ast, env);
+	else if (ft_strcmp(ast->command, "unset") == 0)
+		ft_unset(ast, env);
+	else if (ft_strcmp(ast->command, "env") == 0)
+		ft_env(env);
 	else if (ft_strcmp(ast->command, "exit") == 0)
 	{
 		ft_exit(ast);

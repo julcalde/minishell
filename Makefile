@@ -15,6 +15,7 @@ EXEC_SRC = exec/builtins.c \
 		exec/execute_utils.c \
 		exec/executor.c \
 		exec/libft_utils.c \
+		exec/builtins2.c \
 
 
 OBJS = $(SRCS:.c=.o) $(PARSER_SRCS:.c=.o) $(EXEC_SRC:.c=.o)
@@ -28,16 +29,20 @@ LDFLAGS = -lreadline
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(INLCUDES) $(OBJS) -o $(NAME) $(LDFLAGS)
+	@$(CC) $(CFLAGS) $(INLCUDES) $(OBJS) -o $(NAME) $(LDFLAGS)
+	@echo "Compilation complete"
 %.o: %.c
-	$(CC) $(CFLAGS) $(INLCUDES) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INLCUDES) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	@rm -f $(OBJS)
+	@echo "Object files removed"
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@echo "Clean complete"
 
 re: fclean all
+	@echo "Rebuild complete"
 
 .PHONY: all clean fclean re

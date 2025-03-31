@@ -6,7 +6,7 @@
 /*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:11:29 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/31 00:29:32 by fileonar         ###   ########.fr       */
+/*   Updated: 2025/03/31 03:06:05 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	validate_builtin(t_ast *ast)
 }
 
 /* Built-in execution. */
-void	exec_builtin(t_ast *ast, t_env *env)
+void	exec_builtin(t_ast *ast, t_env *env, char * path)
 {
 	(void) env;
 	// printf("(valid built-in: %s)\n", ast->command);
@@ -68,7 +68,7 @@ void	exec_builtin(t_ast *ast, t_env *env)
 	if (ft_strcmp(ast->command, "echo") == 0)
 		ft_echo(ast);
 	else if (ft_strcmp(ast->command, "cd") == 0)
-		ft_cd(ast);
+		ft_cd(ast, path);
 	else if (ft_strcmp(ast->command, "pwd") == 0)
 		ft_pwd(ast);
 	// else if (ft_strcmp(ast->command, "export") == 0)
@@ -97,7 +97,7 @@ void	external_cmd_exe(t_ast *ast, t_env *env)
 	{
 		write (2, "$fildirame$> ", 14);
 		write (2, ast->command, ft_strlen(ast->command));
-		write (2, "command not found\n", 19);
+		write (2, " command not found\n", 20);
 		return ;
 	}
 	env_array = env_to_array(env);
@@ -116,14 +116,14 @@ void	external_cmd_exe(t_ast *ast, t_env *env)
 }
 
 /* Main execution function. */
-void	exec_cmd(t_ast *ast, t_env *env)
+void	exec_cmd(t_ast *ast, t_env *env, char *path)
 {
 	if (!ast || !ast->command)
 		return ;
 	if (is_builtin(ast->command))
 	{
 		if (validate_builtin(ast))
-			exec_builtin(ast, env);
+			exec_builtin(ast, env, path);
 		else
 			write (2, "invalid arguments\n", 19);
 	}

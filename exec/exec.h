@@ -6,7 +6,7 @@
 /*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 18:33:32 by fileonar          #+#    #+#             */
-/*   Updated: 2025/03/31 00:27:57 by fileonar         ###   ########.fr       */
+/*   Updated: 2025/03/31 03:07:56 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ char	**env_to_array(t_env *env);
 
 int		is_builtin(char *command);
 int		validate_builtin(t_ast *ast);
-void	exec_builtin(t_ast *ast, t_env *env);
+void	exec_builtin(t_ast *ast, t_env *env, char *path);
 void	external_cmd_exe(t_ast *ast, t_env *env);
-void	exec_cmd(t_ast *ast, t_env *env);
+void	exec_cmd(t_ast *ast, t_env *env, char *path);
 
 
 void	execute_command(char	**tokens);
@@ -66,7 +66,7 @@ void	execute_command(char	**tokens);
 
 //BUILTINS.C: Built-in functions.
 int ft_echo(t_ast *ast);
-int ft_cd(t_ast *ast);
+int ft_cd(t_ast *ast,char *path);
 int ft_exit(t_ast *ast);
 int ft_pwd(t_ast *ast);
 #endif

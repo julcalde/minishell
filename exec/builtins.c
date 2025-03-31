@@ -6,7 +6,7 @@
 /*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 20:34:33 by fileonar          #+#    #+#             */
-/*   Updated: 2025/03/31 00:29:51 by fileonar         ###   ########.fr       */
+/*   Updated: 2025/03/31 03:09:37 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,15 @@ int	ft_echo(t_ast *ast)
 	}
 	return (EXIT_SUCCESS);
 }
-//I NEED ENV HOME OR ROOT TO SET THE ROOTPATH WHEN USER ONLY WRITE CD IN THE TERMINAL
-int ft_cd(t_ast *ast)
+
+int ft_cd(t_ast *ast, char *path)
 {
-	char *path;
 
 	if (!ast->args[1])
-		path = getenv("HOME");
+	{
+		chdir((const char *)path);
+		return (EXIT_SUCCESS);
+	}
 	else
 		path = ast->args[1];
 	if (chdir(path) == -1)
@@ -64,6 +66,7 @@ int ft_cd(t_ast *ast)
 		printf("cd: %s: %s\n", path, strerror(errno));
 		return (EXIT_FAILURE);
 	}
+	chdir(path);
 	return (EXIT_SUCCESS);
 }
 
@@ -77,7 +80,7 @@ int ft_exit(t_ast *ast)
 			if (!ft_isdigit(nr))
 			{
 				printf("exit: %s: numeric argument required\n", ast->args[1]);
-				exit(1);
+				exit(2);
 			}
 			printf("exit\n");
 			exit(nr);
@@ -88,6 +91,7 @@ int ft_exit(t_ast *ast)
 			exit(1);
 		}
 }
+
 int ft_pwd(t_ast *ast)
 {
 	

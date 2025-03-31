@@ -6,7 +6,7 @@
 /*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 19:23:08 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/28 19:19:35 by fileonar         ###   ########.fr       */
+/*   Updated: 2025/03/31 03:09:32 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,23 @@ void	shell_loop(t_env *env)
 {
 	char	*input;
 	char	**tokens;
+	char	*path;
 	t_ast	*ast;
 
 	(void)env;
+	path = getcwd(NULL, 0);
 	set_sigs();
 	while (1)
 	{
 		input = read_input();
 		if (!input)
-			break ;
+		break ;
 		if (*input)
-			add_to_history(input);
+		add_to_history(input);
 		tokens = tokenize_input(input);
 		ast = parse_input(tokens);
 		handle_err(ast);
-		exec_cmd(ast, env); // this function is not yet implemented
+		exec_cmd(ast, env, path);
 		free(input);
 		free(tokens);
 		// cleanup(env, ast);

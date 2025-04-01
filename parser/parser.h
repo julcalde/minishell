@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:32:15 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/30 17:27:49 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/01 21:15:03 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,28 @@ typedef enum e_shell_state
 
 extern volatile sig_atomic_t	g_shell_state;
 
-/* Environment variable structure
-** key: stores the name of the environment variable (e.g. "PATH").
-** value: stores the value of the env variable (e.g. "/usr/bin:/bin").
-** next: pointer to the next node in the linked list.
-*/
+/* Token types */
+typedef enum e_token_type
+{
+	T_WORD,
+	T_PIPE,
+	T_REDIRECT_IN,
+	T_REDIRECT_OUT,
+	T_REDIRECT_APPEND,
+	T_SQUOTE,
+	T_DQUOTE,
+	T_VAR,
+	T_EOF
+}	t_token_type;
+
+/* Token structure */
+typedef struct s_token
+{
+	char			*value;
+	t_token_type	type;
+}	t_token;
+
+/* Environment variable structure */
 typedef struct s_env
 {
 	char			*key;
@@ -46,20 +63,27 @@ typedef struct s_env
 	struct s_env	*next;
 }	t_env;
 
-/* AST node structure
-** command: stores the command to execute (e.g. "ls").
-** args: stores the arguments for the command in an array (e.g. ["ls", "-l"]).
-** left: points to left child node in AST. Used for pipelining or redirecting.
-** right: points to right child node in AST. Used for pipelining or redirecting.
-*/
+/* AST node type */
+typedef enum e_node_type
+{
+	N_CMD,
+	N_PIPE,
+	N_REDIR
+}	t_node_type;
+
+/* AST node structure */
 typedef struct s_ast
 {
 	char			*command;
 	char			**args;
 	struct s_ast	*left;
 	struct s_ast	*right;
+	char			*redir_file;
+	int				redir_fd;
 }	t_ast;
 
+
+/* --------------------------- Parsing Functions --------------------------- */
 
 // CLEANER.C: clean-up function for freeing memory at the end.
 

@@ -6,30 +6,28 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:08:06 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/30 16:54:39 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/01 21:21:44 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-/* Actual function to free the t_env struct. */
+/* Actual function to free environment list. */
 void	cleaner_env(t_env *env)
 {
-	t_env	*cur_env;
-	t_env	*next_env;
+	t_env	*tmp_env;
 
-	cur_env = env;
-	while (cur_env)
+	while (env)
 	{
-		next_env = cur_env->next;
-		free(cur_env->key);
-		free(cur_env->value);
-		free(cur_env);
-		cur_env = next_env;
+		tmp_env = env;
+		env = env->next;
+		free(tmp_env->key);
+		free(tmp_env->value);
+		free(tmp_env);
 	}
 }
 
-/* Actual function to free the t_ast struct. */
+/* Actual function to free AST (if exists). */
 void	cleaner_ast(t_ast *ast)
 {
 	int	i;
@@ -55,8 +53,8 @@ void	cleaner_ast(t_ast *ast)
 	free(ast);
 }
 
-/* Main cleanup function that frees t_env and t_ast structs. */
-void	cleanup(t_env *env, t_ast *ast)
+/* Main cleanup function that frees t_env, t_ast and t_token structs. */
+void	cleanup(t_env *env, t_ast *ast, t_token **tokens)
 {
 	cleaner_env(env);
 	cleaner_ast(ast);

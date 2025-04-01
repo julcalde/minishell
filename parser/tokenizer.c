@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 16:23:41 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/25 16:55:21 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/01 23:40:30 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,9 @@ static int	tokens_counter(char *input)
 
 	count = 0;
 	tmp = ft_strdup(input);
-	token = ft_strtok(tmp, " \t\r\n\a");
-	while (token)
-	{
-		count++;
-		token = ft_strtok(NULL, " \t\r\n\a");
-	}
+	token = ft_strtok(tmp, " \t\n");
+	while (token && ++count)
+		token = ft_strtok(NULL, " \t\n");
 	free(tmp);
 	return (count);
 }
@@ -46,11 +43,11 @@ static void	tokens_filler(char **tokens, char *input)
 	int		i;
 
 	i = 0;
-	token = ft_strtok(input, " \t\r\n\a");
+	token = ft_strtok(input, " \t\n");
 	while (token)
 	{
 		tokens[i++] = ft_strdup(token);
-		token = ft_strtok(NULL, " \t\r\n\a");
+		token = ft_strtok(NULL, " \t\n");
 	}
 	tokens[i] = NULL;
 }
@@ -63,13 +60,13 @@ static void	tokens_filler(char **tokens, char *input)
 */
 char	**tokenize_input(char *input)
 {
-	int		count_tokens;
+	int		tok_count;
 	char	**tokens;
 
 	if (!input || !*input)
 		return (NULL);
-	count_tokens = tokens_counter(input);
-	tokens = tokens_allocer(count_tokens);
+	tok_count = tokens_counter(input);
+	tokens = tokens_allocer(tok_count);
 	tokens_filler(tokens, input);
 	return (tokens);
 }

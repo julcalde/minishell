@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:08:06 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/01 21:21:44 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/01 22:33:59 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,30 +32,30 @@ void	cleaner_ast(t_ast *ast)
 {
 	int	i;
 
-	if (ast)
+	if (!ast)
+		return ;
+	free(ast->command);
+	if (ast->args)
 	{
-		free(ast->command);
-		if (ast->args)
-		{
-			i = 0;
-			while (ast->args[i])
-			{
-				free(ast->args[i]);
-				i++;
-			}
-			free(ast->args);
-		}
+		i = 0;
+		while (ast->args[i])
+			free(ast->args[i++]);
+		free(ast->args);
 	}
 	if (ast->left)
-		cleanup(NULL, ast->left);
+		cleaner_ast(ast->left);
 	if (ast->right)
-		cleanup(NULL, ast->right);
+		cleaner_ast(ast->right);
 	free(ast);
 }
 
 /* Main cleanup function that frees t_env, t_ast and t_token structs. */
 void	cleanup(t_env *env, t_ast *ast, t_token **tokens)
 {
-	cleaner_env(env);
-	cleaner_ast(ast);
+	if (env)
+		cleaner_env(env);
+	if (ast)
+		cleaner_ast(ast);
+	if (tokens && *tokens)
+		ft_free_array((char **)tokens);
 }

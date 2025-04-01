@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:39:47 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/30 17:10:14 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/01 23:23:20 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ t_ast	*parse_input(char **tokens)
 {
 	t_ast	*ast;
 
+	if (!tokens || !*tokens)
+		return (NULL);
 	ast = malloc(sizeof(t_ast));
 	if (!ast)
 		perr_exit("malloc ast failed");
@@ -31,5 +33,5 @@ t_ast	*parse_input(char **tokens)
 void	handle_err(t_ast *ast)
 {
 	if (!ast || !ast->command)
-		perr_exit("parsing error");
+		perr_exit("syntax error");
 }

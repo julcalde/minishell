@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 17:07:51 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/20 20:17:04 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/01 23:18:30 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ char	*read_input(void)
 /* Adds non-empty input to the command history */
 void	add_to_history(char *input)
 {
-	if (input && *input)
+	if (input && *input && g_shell_state == SHELL_RUNNING)
 		add_history(input);
 }

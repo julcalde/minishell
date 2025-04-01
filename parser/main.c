@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:26:09 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/30 23:53:26 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/01 22:27:48 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char **argv, char **envp)
 	g_shell_state = SHELL_RUNNING;
 	init_env(&env, envp);
 	shell_loop(env);
-	cleanup(env, NULL);
+	cleanup(env, NULL, NULL);
 	if (g_shell_state == SHELL_TERMINATE)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);

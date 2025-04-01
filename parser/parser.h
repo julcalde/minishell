@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:32:15 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/01 21:15:03 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/01 22:46:33 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ typedef struct s_ast
 
 // CLEANER.C: clean-up function for freeing memory at the end.
 
-void	cleanup(t_env *env, t_ast *ast);
+void	cleanup(t_env *env, t_ast *ast, t_token **tokens);
 void	cleaner_env(t_env *env);
 void	cleaner_ast(t_ast *ast);
 
@@ -96,6 +96,7 @@ void	cleaner_ast(t_ast *ast);
 
 int		is_executable(char *path);
 char	*join_path(char *dir, char *cmd);
+char	*get_env_value(char *key, t_env *env);
 char	*get_path(char *cmd, t_env *env);
 char	**env_to_array(t_env *env);
 

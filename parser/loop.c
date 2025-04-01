@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 19:23:08 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/30 17:33:35 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/01 23:27:50 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,15 @@ void	shell_loop(t_env *env)
 		input = read_input();
 		if (!input || g_shell_state == SHELL_TERMINATE)
 			break ;
-		if (*input && g_shell_state == SHELL_RUNNING)
+		if (*input)
 			add_to_history(input);
-		if (g_shell_state == SHELL_RUNNING)
-		{
-			tokens = tokenize_input(input);
-			ast = parse_input(tokens);
-			handle_err(ast);
+		tokens = tokenize_input(input);
+		ast = parse_input(tokens);
+		if (ast && ast->command)
 			exec_cmd(ast, env);
-		}
 		free(input);
-		cleanup(NULL, ast);
+		cleanup(NULL, ast, (t_token **)tokens);
 		if (g_shell_state == SHELL_INTERRUPT)
 			g_shell_state = SHELL_RUNNING;
 	}
 }
-
-// ft_free_array(tokens);

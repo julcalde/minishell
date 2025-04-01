@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:11:29 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/30 17:45:03 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/01 23:01:20 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,16 @@
 /* Check if a command is a built-in. */
 int	is_builtin(char *command)
 {
-	if (!ft_strcmp(command, "echo"))
+	if (!command)
+		return (0);
+	if (!ft_strcmp(command, "echo") || !ft_strcmp(command, "cd")
+		|| !ft_strcmp(command, "pwd") || !ft_strcmp(command, "export")
+		|| !ft_strcmp(command, "unset") || !ft_strcmp(command, "env")
+		|| !ft_strcmp(command, "exit"))
 		return (1);
-	if (!ft_strcmp(command, "cd"))
-		return (1);
-	if (!ft_strcmp(command, "pwd"))
-		return (1);
-	if (!ft_strcmp(command, "export"))
-		return (1);
-	if (!ft_strcmp(command, "unset"))
-		return (1);
-	if (!ft_strcmp(command, "env"))
-		return (1);
-	if (!ft_strcmp(command, "exit"))
-		return (1);
-	return (0);
 }
 
-/* Validate built-in syntax.
-** echo: validate option -n and arguments.
-** cd: must have 0 or 1 arguments.
-** pwd: no args allowed.
-** export: arguments allowed (key value pairs).
-** unset: arguments allowed (variable names).
-** env: no options or arguments allowed.
-** exit: no options allowed. */
+/* Validate built-in syntax. */
 int	validate_builtin(t_ast *ast)
 {
 	if (!ft_strcmp(ast->command, "echo"))
@@ -48,25 +33,28 @@ int	validate_builtin(t_ast *ast)
 		return (!ast->args[1] || !ast->args[2]);
 	if (!ft_strcmp(ast->command, "pwd"))
 		return (!ast->args[1]);
-	if (!ft_strcmp(ast->command, "export"))
-		return (1);
-	if (!ft_strcmp(ast->command, "unset"))
-		return (1);
 	if (!ft_strcmp(ast->command, "env"))
 		return (!ast->args[1]);
-	if (!ft_strcmp(ast->command, "exit"))
-		return (1);
-	return (0);
+	return (1);
 }
 
 /* Built-in execution. */
 void	exec_builtin(t_ast *ast, t_env *env)
 {
-	(void) env;
-	printf("(valid built-in: %s)\n", ast->command);
-	// Example with echo built-in:
-	// if (ft_strcmp(ast->command, "echo") == 0)
-		// ft_echo(ast);
+	if (!ft_strcmp(ast->command, "echo"))
+		ft_echo(ast->args);
+	else if (!ft_strcmp(ast->command, "cd"))
+		ft_cd(ast->args[1], env);
+	else if (!ft_strcmp(ast->command, "pwd"))
+		ft_pwd();
+	else if (!ft_strcmp(ast->command, "export"))
+		ft_export(ast->args, env);
+	else if (!ft_strcmp(ast->command, "unset"))
+		ft_unset(ast->args, env);
+	else if (!ft_strcmp(ast->command, "env"))
+		ft_env(env);
+	else if (!ft_strcmp(ast->command, "exit"))
+		ft_exit(ast->args);
 }
 
 /* Executes external commands. */
@@ -87,16 +75,11 @@ void	external_cmd_exe(t_ast *ast, t_env *env)
 	env_array = env_to_array(env);
 	pid = fork();
 	if (pid == 0)
-	{
 		execve(path, ast->args, env_array);
-		perr_exit("execvp failed");
-	}
 	else if (pid > 0)
 		waitpid(pid, NULL, 0);
-	else
-		write (2, "$fildirame$> fork failed\n", 26);
-	free(path);
 	ft_free_array(env_array);
+	free(path);
 }
 
 /* Main execution function. */
@@ -105,12 +88,7 @@ void	exec_cmd(t_ast *ast, t_env *env)
 	if (!ast || !ast->command)
 		return ;
 	if (is_builtin(ast->command))
-	{
-		if (validate_builtin(ast))
-			exec_builtin(ast, env);
-		else
-			write (2, "invalid arguments\n", 19);
-	}
+		exec_builtin(ast, env);
 	else
 		external_cmd_exe(ast, env);
 }

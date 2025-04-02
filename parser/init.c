@@ -3,19 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:32:07 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/02 15:25:48 by fileonar         ###   ########.fr       */
+/*   Updated: 2025/04/02 21:49:27 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-/* The init_env function initializes a linked list of environment variables by:
-** parsing an array of strings into key-value pairs.
-** dynamically allocating memory for each node.
-*/
+/* The init_env function initializes a linked list of environment variables. */
 void	init_env(t_env **env, char **envp)
 {
 	t_env	*new_node;

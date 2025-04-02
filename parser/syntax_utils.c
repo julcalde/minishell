@@ -1,14 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   syntax_checker.c                                   :+:      :+:    :+:   */
+/*   syntax_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/01 23:58:36 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/02 22:45:00 by julcalde         ###   ########.fr       */
+/*   Created: 2025/04/02 22:44:08 by julcalde          #+#    #+#             */
+/*   Updated: 2025/04/02 22:44:41 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
+/* Returns 1 if the token type is a redirection, 0 otherwise */
+int	is_redirect(int type)
+{
+	return (type == T_REDIRECT_IN || type == T_REDIRECT_OUT || \
+			type == T_REDIRECT_APPEND);
+}

@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:32:15 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/02 22:46:54 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/02 23:22:37 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,8 +125,9 @@ t_ast			*parse_input(char **tokens);
 void			handle_err(t_ast *ast);
 
 // QUOTE_HANDLER.C: Functions for handling quotes.
-t_token_type	get_quote_type(char c);
+// t_token_type	get_quote_type(char c);
 int				validate_quotes(char *input);
+int				validate_token_quotes(t_token *token);
 
 // SIGNALS.C: Functions for handling signals.
 
@@ -136,7 +137,7 @@ void			set_sigs(void);
 
 // SYNTAX_CHECKER.C: Functions for checking syntax.
 
-
+int				validate_syntax(t_token **tokens);
 
 // SYNTAX_UTILS.C: Utility functions for syntax checking.
 

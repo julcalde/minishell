@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 22:44:08 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/02 22:44:41 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/02 22:47:47 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,3 +18,5 @@ int	is_redirect(int type)
 	return (type == T_REDIRECT_IN || type == T_REDIRECT_OUT || \
 			type == T_REDIRECT_APPEND);
 }
+
+

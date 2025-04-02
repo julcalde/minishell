@@ -6,7 +6,7 @@
 /*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 18:33:32 by fileonar          #+#    #+#             */
-/*   Updated: 2025/03/31 03:30:55 by fileonar         ###   ########.fr       */
+/*   Updated: 2025/04/02 15:36:42 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,6 @@ typedef struct s_tokens
 }	t_tokens;
 
 //LIBFT UTILS
-char	*ft_strdup(const char *s1);
-int		ft_strcmp(char *s1, char *s2);
-size_t	ft_strlen(const char *s);
-char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_isdigit(int a);
 int		ft_atoi(const char *str);
 

@@ -6,7 +6,7 @@
 /*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:11:29 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/31 03:30:28 by fileonar         ###   ########.fr       */
+/*   Updated: 2025/04/02 15:30:07 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ int	is_builtin(char *command)
 		return (1);
 	if (!ft_strcmp(command, "pwd"))
 		return (1);
-	if (!ft_strcmp(command, "export"))
-		return (1);
-	if (!ft_strcmp(command, "unset"))
-		return (1);
-	if (!ft_strcmp(command, "env"))
-		return (1);
+	// if (!ft_strcmp(command, "export"))
+	// 	return (1);
+	// if (!ft_strcmp(command, "unset"))
+	// 	return (1);
+	// if (!ft_strcmp(command, "env"))
+	// 	return (1);
 	if (!ft_strcmp(command, "exit"))
 		return (1);
 	return (0);

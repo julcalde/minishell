@@ -6,7 +6,7 @@
 /*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:32:15 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/31 03:04:42 by fileonar         ###   ########.fr       */
+/*   Updated: 2025/04/02 15:38:06 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,6 @@ void	init_env(t_env **env, char **envp);
 
 char	*read_input(void);
 void	add_to_history(char *input);
-
-
-// LOOP.C: Core minishell loop.
-
-void	shell_loop(t_env *env);
-
 
 // PARSER.C: Parses tokens into an Abstract Syntax Tree (AST)
 

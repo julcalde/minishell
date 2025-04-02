@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:39:52 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/01 23:45:11 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/02 20:39:29 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,4 @@ void	ft_free_array(char **array)
 	while (array[i])
 		free(array[i++]);
 	free(array);
-}
-
-int	is_whitespace(char c)
-{
-	return (c == ' ' || c == '\t' || c == '\n');
-}
-
-int	is_redirect(int type)
-{
-	return (type == T_REDIRECT_IN || type == T_REDIRECT_OUT || \
-			type == T_REDIRECT_APPEND);
 }

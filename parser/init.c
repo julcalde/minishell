@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:32:07 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/01 23:15:15 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/02 15:25:48 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	init_env(t_env **env, char **envp)
 
 	while (*envp)
 	{
-		dup - ft_strdup(*envp);
-		key = ft_strtok(dup, '=');
+		dup = ft_strdup(*envp);
+		key = ft_strtok(dup, "=");
 		if (key)
 		{
 			new_node = malloc(sizeof(t_env));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exeggutor.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:11:29 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/01 23:01:20 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/02 15:16:40 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	is_builtin(char *command)
 		|| !ft_strcmp(command, "unset") || !ft_strcmp(command, "env")
 		|| !ft_strcmp(command, "exit"))
 		return (1);
+	return (0);
 }
 
 /* Validate built-in syntax. */
@@ -41,20 +42,23 @@ int	validate_builtin(t_ast *ast)
 /* Built-in execution. */
 void	exec_builtin(t_ast *ast, t_env *env)
 {
-	if (!ft_strcmp(ast->command, "echo"))
-		ft_echo(ast->args);
-	else if (!ft_strcmp(ast->command, "cd"))
-		ft_cd(ast->args[1], env);
-	else if (!ft_strcmp(ast->command, "pwd"))
-		ft_pwd();
-	else if (!ft_strcmp(ast->command, "export"))
-		ft_export(ast->args, env);
-	else if (!ft_strcmp(ast->command, "unset"))
-		ft_unset(ast->args, env);
-	else if (!ft_strcmp(ast->command, "env"))
-		ft_env(env);
-	else if (!ft_strcmp(ast->command, "exit"))
-		ft_exit(ast->args);
+	(void)env;
+	(void)ast;
+	printf("HELLO\n");
+	// if (!ft_strcmp(ast->command, "echo"))
+	// 	ft_echo(ast->args);
+	// else if (!ft_strcmp(ast->command, "cd"))
+	// 	ft_cd(ast->args[1], env);
+	// else if (!ft_strcmp(ast->command, "pwd"))
+	// 	ft_pwd();
+	// else if (!ft_strcmp(ast->command, "export"))
+	// 	ft_export(ast->args, env);
+	// else if (!ft_strcmp(ast->command, "unset"))
+	// 	ft_unset(ast->args, env);
+	// else if (!ft_strcmp(ast->command, "env"))
+	// 	ft_env(env);
+	// else if (!ft_strcmp(ast->command, "exit"))
+	// 	ft_exit(ast->args);
 }
 
 /* Executes external commands. */

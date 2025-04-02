@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:32:15 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/02 22:34:55 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/02 22:46:54 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,14 @@ void			handle_sigint(int sig);
 void			handle_sigquit(int sig);
 void			set_sigs(void);
 
+// SYNTAX_CHECKER.C: Functions for checking syntax.
+
+
+
+// SYNTAX_UTILS.C: Utility functions for syntax checking.
+
+int				is_redirect(int type);
+
 // TOKENIZER.C: Functions for tokenizing user input.
 
 char			**tokenize_input(char *input);
@@ -146,7 +154,6 @@ char			*get_next_token(char **input);
 
 int				is_whitespace(char c);
 int				is_special(char c);
-int				is_redirect(int type);
 int				is_alnum(char c);
 
 // UTILS.C: Utility functions.

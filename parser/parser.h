@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:32:15 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/02 21:54:08 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/02 22:34:55 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,11 +147,21 @@ char			*get_next_token(char **input);
 int				is_whitespace(char c);
 int				is_special(char c);
 int				is_redirect(int type);
+int				is_alnum(char c);
 
 // UTILS.C: Utility functions.
 
 void			perr_exit(char *err_msg);
 void			ft_free_array(char **array);
+
+// VAR_EXPANSION.C: Functions for expanding environment variables.
+
+char			*expand_var(char *token, t_env *env);
+
+// VAR_UTILS.C: Functions for handling environment variables.
+
+char			*ft_strjoin_free(char *s1, char *s2);
+char			*ft_append_char(char *str, char c);
 
 /* Helper functions libft_utils.c,libft_utils_moar.c and libft_utils_moaar.c */
 

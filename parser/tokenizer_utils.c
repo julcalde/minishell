@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:22:50 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/03 16:25:11 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/03 18:34:22 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ static int	get_operator_length(char *str)
 	if (*str == '>' && *(str + 1) == '>')
 		return (2);
 	if (*str == '<' && *(str + 1) == '<')
+		return (2);
+	if (*str == '|' && *(str + 1) == '|')
+		return (2);
+	if (*str == '&' && *(str + 1) == '&')
 		return (2);
 	if (is_operator (*str))
 		return (1);
@@ -58,5 +62,6 @@ char	*get_next_token(char **input)
 				len++;
 		}
 	}
+	*input += len;
 	return (ft_substr(*input, 0, len));
 }

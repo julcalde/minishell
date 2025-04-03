@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:56:36 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/02 21:00:06 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/03 19:43:49 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,28 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 		return (NULL);
 	ft_memcpy(sub, s + start, len);
 	return (sub);
+}
+
+char	*ft_itoa(int n)
+{
+	char	buf[12];
+	int		i;
+	int		sign;
+
+	sign = (n < 0);
+	i = 11;
+	buf[i--] = '\0';
+	if (n == 0)
+		return (ft_strdup("0"));
+	while (n != 0)
+	{
+		if (sign)
+			buf[i--] = '0' - (n % 10) * -1;
+		else
+			buf[i--] = '0' + (n % 10);
+		n /= 10;
+	}
+	if (sign)
+		buf[i--] = '-';
+	return (ft_strdup(buf + i + 1));
 }

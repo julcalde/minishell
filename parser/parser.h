@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:32:15 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/03 16:12:26 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/03 19:48:51 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,11 @@ void			exec_builtin(t_ast *ast, t_env *env);
 void			external_cmd_exe(t_ast *ast, t_env *env);
 void			exec_cmd(t_ast *ast, t_env *env);
 
+
+// HEREDOC.C: Functions for handling heredoc.
+
+int				handle_heredoc(char *delim);
+
 // INIT.C: Initializes the shell environment.
 
 void			init_env(t_env **env, char **envp);
@@ -186,5 +191,6 @@ char			*ft_strjoin(char const *s1, char const *s2);
 void			*ft_calloc(size_t count, size_t size);
 void			*ft_memcpy(void *dst, const void *src, size_t n);
 char			*ft_substr(const char *s, unsigned int start, size_t len);
+char			*ft_itoa(int n);
 
 #endif

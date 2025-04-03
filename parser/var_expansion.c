@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 23:58:40 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/03 16:56:00 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/03 18:43:50 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	extract_var_name(char *str)
 	len = 1;
 	if (str[len] == '?')
 		return (ft_strdup("?"));
-	while (is_alnum(str[len]))
+	while (str[len] && (is_alnum(str[len])) || str[len] == '_')
 		len++;
 	name = ft_substr(str, 1, len - 1);
 	return (name);

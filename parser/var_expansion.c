@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 23:58:40 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/02 22:36:00 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/03 16:56:00 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static char	*get_var_value(char *var_name, t_env *env)
 	t_env	*tmp;
 
 	if (!ft_strcmp(var_name, "?"))
-		return (ft_strdup("0)"));
+		return (ft_strdup("0"));
 	tmp = env;
 	while (tmp)
 	{

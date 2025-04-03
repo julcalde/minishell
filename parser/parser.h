@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:32:15 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/03 15:52:12 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/03 15:56:53 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,8 +141,8 @@ int				validate_syntax(t_token **tokens);
 
 // SYNTAX_UTILS.C: Utility functions for syntax checking.
 
-int				is_redirect(t_token_type type);
-int				is_operator(t_token_type type);
+int				is_redirect_type(t_token_type type);
+int				is_operator_type(t_token_type type);
 
 // TOKENIZER.C: Functions for tokenizing user input.
 

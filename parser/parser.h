@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:32:15 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/03 19:48:51 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/03 19:53:18 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_ast
 	struct s_ast	*right;
 	char			*redir_file;
 	int				redir_fd;
+	int				heredoc_fd;
 }	t_ast;
 
 /* --------------------------- Parsing Functions --------------------------- */

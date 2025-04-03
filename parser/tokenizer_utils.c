@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:22:50 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/02 21:04:14 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/03 16:25:11 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,17 @@ static int	handle_quoted_input(char **str, char quote)
 	return (len + 1);
 }
 
+static int	get_operator_length(char *str)
+{
+	if (*str == '>' && *(str + 1) == '>')
+		return (2);
+	if (*str == '<' && *(str + 1) == '<')
+		return (2);
+	if (is_operator (*str))
+		return (1);
+	return (0);
+}
+
 char	*get_next_token(char **input)
 {
 	int		len;
@@ -35,16 +46,17 @@ char	*get_next_token(char **input)
 		return (NULL);
 	ptr = *input;
 	if (*ptr == '\'' || *ptr == '\"')
-	{
 		len = handle_quoted_input(&ptr, *ptr);
-		if (len == -1)
-			return (NULL);
-	}
 	else
 	{
-		len = 0;
-		while (ptr[len] && !is_whitespace(ptr[len]) && !is_special(ptr[len]))
-			len++;
+		len = get_operator_length(ptr);
+		if (!len)
+		{
+			len = 0;
+			while (ptr[len] && !is_whitespace(ptr[len]) && \
+			!is_operator(ptr[len]))
+				len++;
+		}
 	}
 	return (ft_substr(*input, 0, len));
 }

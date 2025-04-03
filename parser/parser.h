@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:32:15 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/03 15:56:53 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/03 16:12:26 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,11 +151,11 @@ char			**tokenize_input(char *input);
 // TOKENIZER_UTILS.C: Utility functions for tokenizing.
 
 char			*get_next_token(char **input);
-int				tokens_counter(char *input);
 
 // TOKENIZER_CHECKS.C: Functions for checking token types.
 
 int				is_whitespace(char c);
+int				is_operator(char c);
 int				is_special(char c);
 int				is_alnum(char c);
 

@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 16:23:41 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/02 21:25:07 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/03 16:01:27 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	**tokenize_input(char *input)
 	char	*token;
 	int		i;
 
-	if (!validate_quotes(input))
+	if (!input || !validate_quotes(input))
 		return (NULL);
 	tokens = malloc(sizeof(char *) * (tokens_counter(input) + 1));
 	if (!tokens)

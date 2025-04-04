@@ -6,7 +6,7 @@
 /*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 19:23:08 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/04 15:38:20 by fileonar         ###   ########.fr       */
+/*   Updated: 2025/04/05 00:22:17 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	shell_loop(t_env *env)
 	while (g_shell_state == SHELL_RUNNING)
 	{
 		input = read_input();
-		if (!*input || g_shell_state == SHELL_TERMINATE)
+		if (g_shell_state == SHELL_TERMINATE)
 			break ;
 		if (*input)
 		add_to_history(input);

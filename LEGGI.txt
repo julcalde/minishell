@@ -1,5 +1,0 @@
-in caso non potessi pushare cambiamenti.
-1. git pull --rebase origin master (per pullare i cambiamenti senza eliminare i tuoi commits)
-1.1 in caso di conflitti, risolvili o chiama se non riesci (ma non dovrebbe succedere se lavoriamo in cartelle diverse)
-1.1.1 git rebase --continue (per continuare il pull rebase)
-2. git push

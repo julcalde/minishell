@@ -6,7 +6,7 @@
 /*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:32:15 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/04 15:36:08 by fileonar         ###   ########.fr       */
+/*   Updated: 2025/04/04 15:47:13 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,9 +103,9 @@ char			**env_to_array(t_env *env);
 
 int				is_builtin(char *command);
 int				validate_builtin(t_ast *ast);
-void			exec_builtin(t_ast *ast, t_env *env);
+void			exec_builtin(t_ast *ast, t_env *env, char *path);
 void			external_cmd_exe(t_ast *ast, t_env *env);
-void			exec_cmd(t_ast *ast, t_env *env);
+void			exec_cmd(t_ast *ast, t_env *env, char *path);
 
 
 // HEREDOC.C: Functions for handling heredoc.

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer_checks.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:22:47 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/03 18:25:46 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/04 15:47:57 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	is_whitespace(char c)
 /* Returns 1 if the character is an operator, 0 otherwise */
 int	is_operator(char c)
 {
-	return (c == '|' || c == '<' || c == '>' || '&');
+	return (c == '|' || c == '<' || c == '>' || c == '&');
 }
 
 /* Returns 1 if the character is a special character, 0 otherwise */

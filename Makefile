@@ -8,7 +8,17 @@ PARSER_SRCS = parser/init.c \
 			parser/parser.c \
 			parser/signals.c \
 			parser/tokenizer.c \
-			parser/utils.c
+			parser/utils.c \
+			parser/heredoc.c \
+			parser/libft_utils_moaar.c \
+			parser/quote_handler.c \
+			parser/syntax_checker.c \
+			parser/syntax_utils.c \
+			parser/tokenizer_checks.c \
+			parser/tokenizer_utils.c \
+			parser/var_expansion.c \
+			parser/var_utils.c \
+			parser/cleaner.c \
 
 EXEC_SRC = exec/builtins.c \
 		exec/execute_commands.c \

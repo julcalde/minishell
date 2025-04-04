@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 22:44:08 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/03 15:56:44 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/04 15:47:34 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,5 @@ int	is_redirect_type(t_token_type type)
 /* Returns 1 if the token type is a pipe or a redirection, 0 otherwise */
 int	is_operator_type(t_token_type type)
 {
-	return (type == T_PIPE || is_redirect(type));
+	return (type == T_PIPE || is_redirect_type(type));
 }

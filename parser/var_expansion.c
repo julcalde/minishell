@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   var_expansion.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 23:58:40 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/03 18:43:50 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/04 15:49:21 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static char	extract_var_name(char *str)
+static char	*extract_var_name(char *str)
 {
 	int		len;
 	char	*name;
@@ -20,7 +20,7 @@ static char	extract_var_name(char *str)
 	len = 1;
 	if (str[len] == '?')
 		return (ft_strdup("?"));
-	while (str[len] && (is_alnum(str[len])) || str[len] == '_')
+	while ((str[len] && is_alnum(str[len])) || str[len] == '_')
 		len++;
 	name = ft_substr(str, 1, len - 1);
 	return (name);

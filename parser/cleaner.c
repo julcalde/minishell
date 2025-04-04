@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleaner.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:08:06 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/01 22:33:59 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/04 15:34:55 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	cleaner_ast(t_ast *ast)
 			free(ast->args[i++]);
 		free(ast->args);
 	}
+	if (ast->heredoc_fd > 2)
+		close(ast->heredoc_fd);
 	if (ast->left)
 		cleaner_ast(ast->left);
 	if (ast->right)

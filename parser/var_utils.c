@@ -1,37 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input.c                                            :+:      :+:    :+:   */
+/*   var_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/14 17:07:51 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/01 23:18:30 by julcalde         ###   ########.fr       */
+/*   Created: 2025/04/02 22:27:51 by julcalde          #+#    #+#             */
+/*   Updated: 2025/04/02 22:34:35 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-/* Reads input from the user:
-** displays prompt and read input.
-** handles EOF (Ctrl+D).
-** Exits gracefully. */
-char	*read_input(void)
+/* Joins two strings and frees the input strings. */
+char	*ft_strjoin_free(char *s1, char *s2)
 {
-	char	*input;
+	char	*result;
 
-	input = readline("$fildirame$> ");
-	if (!input)
-	{
-		printf("exit\n");
-		exit(EXIT_SUCCESS);
-	}
-	return (input);
+	result = ft_strjoin(s1, s2);
+	free(s1);
+	free(s2);
+	return (result);
 }
 
-/* Adds non-empty input to the command history */
-void	add_to_history(char *input)
+char	*ft_append_char(char *str, char c)
 {
-	if (input && *input && g_shell_state == SHELL_RUNNING)
-		add_history(input);
+	char	*new;
+	int		len;
+
+	len = ft_strlen(str);
+	new = malloc(len + 2);
+	if (!new)
+		return (NULL);
+	ft_memcpy(new, str, len);
+	new[len] = c;
+	new[len + 1] = '\0';
+	free(str);
+	return (new);
 }

@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 16:23:41 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/25 16:55:21 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/03 16:01:27 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,56 +20,37 @@ static int	tokens_counter(char *input)
 
 	count = 0;
 	tmp = ft_strdup(input);
-	token = ft_strtok(tmp, " \t\r\n\a");
-	while (token)
+	token = get_next_token(&tmp);
+	while (token && ++count)
 	{
-		count++;
-		token = ft_strtok(NULL, " \t\r\n\a");
+		free(token);
+		token = get_next_token(&tmp);
 	}
 	free(tmp);
 	return (count);
 }
 
-static char	**tokens_allocer(int count)
+char	**tokenize_input(char *input)
 {
 	char	**tokens;
-
-	tokens = malloc(sizeof(char *) * (count + 1));
-	if (!tokens)
-		perr_exit("malloc failed");
-	return (tokens);
-}
-
-static void	tokens_filler(char **tokens, char *input)
-{
+	char	*tmp;
 	char	*token;
 	int		i;
 
+	if (!input || !validate_quotes(input))
+		return (NULL);
+	tokens = malloc(sizeof(char *) * (tokens_counter(input) + 1));
+	if (!tokens)
+		return (NULL);
+	tmp = ft_strdup(input);
 	i = 0;
-	token = ft_strtok(input, " \t\r\n\a");
+	token = get_next_token(&tmp);
 	while (token)
 	{
-		tokens[i++] = ft_strdup(token);
-		token = ft_strtok(NULL, " \t\r\n\a");
+		tokens[i++] = token;
+		token = get_next_token(&tmp);
 	}
 	tokens[i] = NULL;
-}
-
-/* Splits user input into tokens via static functions:
-** tokens_counter: counts the number of tokens in the input.
-** tokens_allocer: allocates memory for the tokens array based on token count.
-** tokens_filler: fills the tokens array with actual tokens.
-** tokenize_input: calls the above functions to tokenize the input.
-*/
-char	**tokenize_input(char *input)
-{
-	int		count_tokens;
-	char	**tokens;
-
-	if (!input || !*input)
-		return (NULL);
-	count_tokens = tokens_counter(input);
-	tokens = tokens_allocer(count_tokens);
-	tokens_filler(tokens, input);
+	free(tmp);
 	return (tokens);
 }

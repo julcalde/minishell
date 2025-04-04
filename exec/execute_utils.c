@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exeggcute_utils.c                                  :+:      :+:    :+:   */
+/*   execute_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 16:48:27 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/28 16:00:21 by fileonar         ###   ########.fr       */
+/*   Updated: 2025/04/04 15:36:41 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,31 +40,42 @@ char	*join_path(char *dir, char *cmd)
 	return (path);
 }
 
+/* Gets the value of an environment variable. */
+char	*get_env_value(char *key, t_env *env)
+{
+	if (!key || !env)
+		return (NULL);
+	while (env)
+	{
+		if (!ft_strcmp(key, env->key))
+			return (env->value);
+		env = env->next;
+	}
+	return (NULL);
+}
+
 /* Gets the path for execve. */
 char	*get_path(char *cmd, t_env *env)
 {
 	char	*path;
 	char	*dir;
 	char	*full_path;
-	char	*path_copy;
 
 	(void)env;
 	if (ft_strchr(cmd, '/'))
 		return (ft_strdup(cmd));
-	path = getenv("PATH");
+	path = get_env_value("PATH", env);
 	if (!path)
 		return (NULL);
-	path_copy = ft_strdup(path);
-	dir = ft_strtok(path_copy, ":");
+	dir = ft_strtok(path, ":");
 	while (dir)
 	{
 		full_path = join_path(dir, cmd);
 		if (is_executable(full_path))
-			return (free(path_copy), full_path);
+			return (full_path);
 		free(full_path);
 		dir = ft_strtok(NULL, ":");
 	}
-	free(path_copy);
 	return (NULL);
 }
 

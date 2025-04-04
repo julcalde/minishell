@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:39:52 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/25 16:47:46 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/02 20:39:29 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /* Handles custom error messages and exits using EXIT_FAILURE */
 void	perr_exit(char *err_msg)
 {
-	write (2, "Error: ", 8);
+	write (2, "$fildirame$> ", 14);
 	write (2, err_msg, ft_strlen(err_msg));
 	write (2, "\n", 1);
 	exit(EXIT_FAILURE);
@@ -29,11 +29,10 @@ void	ft_free_array(char **array)
 {
 	int	i;
 
-	i = 0;
 	if (!array)
 		return ;
+	i = 0;
 	while (array[i])
 		free(array[i++]);
 	free(array);
-	array = NULL;
 }

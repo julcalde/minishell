@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 17:10:28 by julcalde          #+#    #+#             */
-/*   Updated: 2025/03/25 18:27:00 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/02 21:00:53 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,36 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		s3[c2++] = s2[c1++];
 	s3[c2] = '\0';
 	return (s3);
+}
+
+/* Check 'man calloc' */
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*ptr;
+	size_t	total;
+
+	total = count * size;
+	if (size && total / size != count)
+		return (NULL);
+	ptr = malloc(total);
+	if (!ptr)
+		return (NULL);
+	while (total--)
+		((char *)ptr)[total] = 0;
+	return (ptr);
+}
+
+/* Check 'man memcpy' */
+void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	char		*d;
+	const char	*s;
+
+	if (!dst && !src)
+		return (dst);
+	d = dst;
+	s = src;
+	while (n--)
+		*d++ = *s++;
+	return (dst);
 }

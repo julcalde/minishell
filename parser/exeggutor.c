@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exeggutor.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:11:29 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/02 15:16:40 by fileonar         ###   ########.fr       */
+/*   Updated: 2025/04/05 14:50:49 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,19 @@ int	is_builtin(char *command)
 	return (0);
 }
 
-/* Validate built-in syntax. */
-int	validate_builtin(t_ast *ast)
-{
-	if (!ft_strcmp(ast->command, "echo"))
-		return (1);
-	if (!ft_strcmp(ast->command, "cd"))
-		return (!ast->args[1] || !ast->args[2]);
-	if (!ft_strcmp(ast->command, "pwd"))
-		return (!ast->args[1]);
-	if (!ft_strcmp(ast->command, "env"))
-		return (!ast->args[1]);
-	return (1);
-}
+// /* Validate built-in syntax. */
+// int	validate_builtin(t_ast *ast)
+// {
+// 	if (!ft_strcmp(ast->command, "echo"))
+// 		return (1);
+// 	if (!ft_strcmp(ast->command, "cd"))
+// 		return (!ast->args[1] || !ast->args[2]);
+// 	if (!ft_strcmp(ast->command, "pwd"))
+// 		return (!ast->args[1]);
+// 	if (!ft_strcmp(ast->command, "env"))
+// 		return (!ast->args[1]);
+// 	return (1);
+// }
 
 /* Built-in execution. */
 void	exec_builtin(t_ast *ast, t_env *env)

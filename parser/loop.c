@@ -6,11 +6,23 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 19:23:08 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/02 21:12:47 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/05 15:02:20 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+
+static char	*read_and_store_input(void)
+{
+	char	*input;
+
+	input = read_input();
+	if (!*input || g_shell_state == SHELL_TERMINATE)
+		return (NULL);
+	if (*input)
+		add_to_history(input);
+	return (input);
+}
 
 /* Core minishell loop */
 void	shell_loop(t_env *env)
@@ -22,12 +34,16 @@ void	shell_loop(t_env *env)
 	set_sigs();
 	while (g_shell_state == SHELL_RUNNING)
 	{
-		input = read_input();
-		if (!*input || g_shell_state == SHELL_TERMINATE)
+		input = read_and_store_input();
+		if (!input)
 			break ;
-		if (*input)
-			add_to_history(input);
 		tokens = tokenize_input(input);
+		if (!validate_syntax((t_token **)tokens))
+		{
+			ft_free_array(tokens);
+			free(input);
+			continue ;
+		}
 		ast = parse_input(tokens);
 		if (ast && ast->command)
 			exec_cmd(ast, env);

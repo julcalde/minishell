@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 18:42:31 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/01 23:35:47 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/05 15:12:16 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ void	set_sigs(void)
 	sigemptyset(&sa_int.sa_mask);
 	sigemptyset(&sa_quit.sa_mask);
 	sa_int.sa_flags = SA_RESTART;
-	sa_quit.sa_flags = SA_RESTART;
-	sigaction(SIGINT, &sa_int, NULL);
-	sigaction(SIGQUIT, &sa_quit, NULL);
+	if (sigaction(SIGINT, &sa_int, NULL) == -1)
+		perr_exit("sigaction failed");
+	if (sigaction(SIGQUIT, &sa_quit, NULL) == -1)
+		perr_exit("sigaction failed");
 }

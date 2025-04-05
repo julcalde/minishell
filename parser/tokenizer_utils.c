@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:22:50 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/03 18:34:22 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/05 15:20:54 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,11 @@ static int	handle_quoted_input(char **str, char quote)
 
 	len = 1;
 	while ((*str)[len] && (*str)[len] != quote)
+	{
+		if (quote == '\"' && (*str)[len] == '\\' && (*str)[len + 1])
+			len++;
 		len++;
+	}
 	if (!(*str)[len])
 		return (-1);
 	return (len + 1);
@@ -29,10 +33,6 @@ static int	get_operator_length(char *str)
 	if (*str == '>' && *(str + 1) == '>')
 		return (2);
 	if (*str == '<' && *(str + 1) == '<')
-		return (2);
-	if (*str == '|' && *(str + 1) == '|')
-		return (2);
-	if (*str == '&' && *(str + 1) == '&')
 		return (2);
 	if (is_operator (*str))
 		return (1);

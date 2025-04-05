@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:32:15 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/03 19:53:18 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/05 14:41:44 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef enum e_token_type
 	T_REDIRECT_IN,
 	T_REDIRECT_OUT,
 	T_REDIRECT_APPEND,
+	T_HEREDOC,
 	T_SQUOTE,
 	T_DQUOTE,
 	T_VAR,
@@ -78,9 +79,9 @@ typedef struct s_ast
 	char			**args;
 	struct s_ast	*left;
 	struct s_ast	*right;
+	int				heredoc_fd;
 	char			*redir_file;
 	int				redir_fd;
-	int				heredoc_fd;
 }	t_ast;
 
 /* --------------------------- Parsing Functions --------------------------- */

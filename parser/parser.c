@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 17:39:47 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/01 23:23:20 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/05 14:42:51 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_ast	*parse_input(char **tokens)
 	ast->args = tokens;
 	ast->left = NULL;
 	ast->right = NULL;
+	ast->heredoc_fd = -1;
 	return (ast);
 }
 
@@ -33,5 +34,8 @@ t_ast	*parse_input(char **tokens)
 void	handle_err(t_ast *ast)
 {
 	if (!ast || !ast->command)
+	{
 		perr_exit("syntax error");
+		g_shell_state = SHELL_TERMINATE;
+	}
 }

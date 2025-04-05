@@ -6,7 +6,7 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 23:58:36 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/03 18:52:47 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/05 15:15:02 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	validate_syntax(t_token **tokens)
 	int	i;
 
 	if (!tokens || !*tokens)
-		return  (0);
+		return (0);
 	i = -1;
 	while (tokens[++i])
 	{
@@ -37,7 +37,7 @@ int	validate_syntax(t_token **tokens)
 			return (0);
 		if (is_operator_type(tokens[i]->type) && !validate_operator(tokens, i))
 		{
-			handle_err(NULL); // or "syntax error near unexpected token '<token>' \n"
+			handle_err(NULL);
 			return (0);
 		}
 	}

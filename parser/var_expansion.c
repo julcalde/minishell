@@ -6,13 +6,13 @@
 /*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 23:58:40 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/03 18:43:50 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/05 15:36:39 by julcalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static char	extract_var_name(char *str)
+static char	*extract_var_name(char *str)
 {
 	int		len;
 	char	*name;
@@ -31,7 +31,7 @@ static char	*get_var_value(char *var_name, t_env *env)
 	t_env	*tmp;
 
 	if (!ft_strcmp(var_name, "?"))
-		return (ft_strdup("0"));
+		return (ft_itoa(g_shell_state));
 	tmp = env;
 	while (tmp)
 	{

@@ -6,7 +6,7 @@
 /*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 15:11:29 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/04 15:38:06 by fileonar         ###   ########.fr       */
+/*   Updated: 2025/04/14 22:20:58 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 int	is_builtin(char *command)
 {
 	if (!command)
-		return (0);
-	if (!ft_strcmp(command, "echo") || !ft_strcmp(command, "cd")
-		|| !ft_strcmp(command, "pwd") || !ft_strcmp(command, "export")
-		|| !ft_strcmp(command, "unset") || !ft_strcmp(command, "env")
-		|| !ft_strcmp(command, "exit"))
 		return (1);
-	return (0);
+	if (ft_strcmp(command, "echo") || ft_strcmp(command, "cd")
+		|| ft_strcmp(command, "pwd") || ft_strcmp(command, "export")
+		|| ft_strcmp(command, "unset") || ft_strcmp(command, "env")
+		|| ft_strcmp(command, "exit"))
+		return (0);
+	return (1);
 }
 
 /* Validate built-in syntax. */
@@ -95,7 +95,7 @@ void	exec_cmd(t_ast *ast, t_env *env, char *path)
 {
 	if (!ast || !ast->command)
 		return ;
-	if (is_builtin(ast->command))
+	if (is_builtin(ast->command) == 0)
 		exec_builtin(ast, env, path);
 	else
 		external_cmd_exe(ast, env);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 20:22:50 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/03 18:34:22 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/14 22:15:43 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,5 @@ char	*get_next_token(char **input)
 		}
 	}
 	*input += len;
-	return (ft_substr(*input, 0, len));
+	return (ft_substr(ptr, 0, len));
 }

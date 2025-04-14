@@ -6,7 +6,7 @@
 /*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 16:23:41 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/04 15:54:50 by fileonar         ###   ########.fr       */
+/*   Updated: 2025/04/14 22:18:11 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ static int	tokens_counter(char *input)
 		free(token);
 		token = get_next_token(&tmp);
 	}
-	free(tmp);
+	if (*tmp)
+		free(tmp);
 	return (count);
 }
 
@@ -51,6 +52,7 @@ char	**tokenize_input(char *input)
 		token = get_next_token(&tmp);
 	}
 	tokens[i] = NULL;
-	free(tmp);
+	if (*tmp)
+		free(tmp);
 	return (tokens);
 }

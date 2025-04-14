@@ -6,7 +6,7 @@
 /*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:32:15 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/04 15:47:13 by fileonar         ###   ########.fr       */
+/*   Updated: 2025/04/14 22:45:36 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,7 @@ int				is_alnum(char c);
 
 void			perr_exit(char *err_msg);
 void			ft_free_array(char **array);
+void	ft_free_tokens(t_token **tokens);
 
 // VAR_EXPANSION.C: Functions for expanding environment variables.
 

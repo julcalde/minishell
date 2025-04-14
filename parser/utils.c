@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julcalde <julcalde@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:39:52 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/02 20:39:29 by julcalde         ###   ########.fr       */
+/*   Updated: 2025/04/14 22:45:44 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,3 +36,17 @@ void	ft_free_array(char **array)
 		free(array[i++]);
 	free(array);
 }
+
+void	ft_free_tokens(t_token **tokens)
+{
+	int	i;
+
+	if (!tokens)
+		return ;
+	i = 0;
+	while (tokens[i])
+		free(tokens[i++]);
+	if (*tokens)
+		free(*tokens);
+}
+

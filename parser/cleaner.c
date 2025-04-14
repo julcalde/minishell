@@ -6,7 +6,7 @@
 /*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:08:06 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/04 15:34:55 by fileonar         ###   ########.fr       */
+/*   Updated: 2025/04/14 22:50:07 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,6 @@ void	cleanup(t_env *env, t_ast *ast, t_token **tokens)
 		cleaner_env(env);
 	if (ast)
 		cleaner_ast(ast);
-	if (tokens && *tokens)
-		ft_free_array((char **)tokens);
+	if (*tokens)
+		ft_free_tokens(tokens);
 }

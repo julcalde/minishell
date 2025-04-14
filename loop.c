@@ -6,7 +6,7 @@
 /*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 19:23:08 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/05 00:22:17 by fileonar         ###   ########.fr       */
+/*   Updated: 2025/04/14 22:52:36 by fileonar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,14 @@ void	shell_loop(t_env *env)
 		if (g_shell_state == SHELL_TERMINATE)
 			break ;
 		if (*input)
-		add_to_history(input);
+			add_to_history(input);
 		tokens = tokenize_input(input);
 		ast = parse_input(tokens);
 		if (ast && ast->command)
 			exec_cmd(ast, env, path);
-		free(input);
-		cleanup(NULL, ast, (t_token **)tokens);
+		if (input)
+			free(input);
+		// cleanup(env, ast, (t_token **)tokens);
 		if (g_shell_state == SHELL_INTERRUPT)
 			g_shell_state = SHELL_RUNNING;
 	}

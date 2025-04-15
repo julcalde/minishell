@@ -22,11 +22,16 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_env	*env;
 
-	env = NULL;
 	(void)argc;
 	(void)argv;
+	if (!isatty(STDIN_FILENO))
+		perr_exit("Not a terminal.");
+	env = NULL;
+	g_shell_state = SHELL_RUNNING;
 	init_env(&env, envp);
 	shell_loop(env);
-	// cleanup(env, NULL);
-	return (0);
+	cleanup(env, NULL, NULL);
+	if (g_shell_state == SHELL_TERMINATE)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }

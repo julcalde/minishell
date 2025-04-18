@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fefo <fefo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 16:48:27 by julcalde          #+#    #+#             */
-/*   Updated: 2025/04/04 15:36:41 by fileonar         ###   ########.fr       */
+/*   Updated: 2025/04/18 19:36:25 by fefo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,28 +55,59 @@ char	*get_env_value(char *key, t_env *env)
 }
 
 /* Gets the path for execve. */
+// char	*get_path(char *cmd, t_env *env)
+// {
+// 	char	*path;
+// 	char	*dir;
+// 	char	*full_path;
+
+// 	if (ft_strchr(cmd, '/'))
+// 		return (ft_strdup(cmd));
+// 	path = get_env_value("PATH", env);
+// 	if (!path)
+// 		return (NULL);
+// 	dir = ft_strtok(path, ":");
+// 	while (dir)
+// 	{
+// 		full_path = join_path(dir, cmd);
+// 		if (is_executable(full_path))
+// 			return (full_path);
+		
+// 		free(full_path);
+// 		dir = ft_strtok(NULL, ":");
+// 	}
+// 	return (NULL);
+// }
+
+/* New version of get path. this helps me handle ls -a cat -e etc..  */
 char	*get_path(char *cmd, t_env *env)
 {
-	char	*path;
-	char	*dir;
-	char	*full_path;
+    char	*path_env;
+    char	**paths;
+    char	*full_path;
+    int		i;
 
-	(void)env;
-	if (ft_strchr(cmd, '/'))
-		return (ft_strdup(cmd));
-	path = get_env_value("PATH", env);
-	if (!path)
-		return (NULL);
-	dir = ft_strtok(path, ":");
-	while (dir)
-	{
-		full_path = join_path(dir, cmd);
-		if (is_executable(full_path))
-			return (full_path);
-		free(full_path);
-		dir = ft_strtok(NULL, ":");
-	}
-	return (NULL);
+    path_env = get_env_value("PATH", env);
+    if (!path_env)
+        return (NULL);
+    paths = ft_split(path_env, ':');
+    if (!paths)
+        return (NULL);
+    i = 0;
+    while (paths[i])
+    {
+        full_path = ft_strjoin(paths[i], "/");
+        full_path = ft_strjoin(full_path, cmd);
+        if (access(full_path, X_OK) == 0)
+        {
+            ft_free_array(paths);
+            return (full_path);
+        }
+        free(full_path);
+        i++;
+    }
+    ft_free_array((char **)paths);
+    return (NULL);
 }
 
 /* Converts the env list to an array of char for the execve function. */

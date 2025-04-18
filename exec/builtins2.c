@@ -14,15 +14,54 @@
 
 int ft_unset(t_ast *ast, t_env *env)
 {
-	(void)ast;
-	(void)env;
-	printf("unset: not implemented yet\n");
+	int i;
+	t_env *prev;
+	t_env *current;
+	if (!ast || !ast->args)
+	{
+		perror("unset: No arguments provided");
+		return (EXIT_FAILURE);
+	}
+	i = 1;
+	while (ast->args[i])
+	{
+		current = env;
+		prev = NULL;
+		while (current)
+		{
+			if (strcmp(current->key, ast->args[i]) == 0)
+			{
+				if (prev)
+					prev->next = current->next;
+				else
+					env = current->next;
+				free(current->key);
+				free(current->value);
+				free(current);
+				break;
+			}
+			prev = current;
+			current = current->next;
+		}
+		i++;
+	}
+
+
 	return (EXIT_SUCCESS);
 }
 
 int ft_env(t_env *env)
 {
-	(void)env;
-	printf("env: not implemented yet\n");
+	if (!env)
+	{
+		perror("env: No environment variables found");
+		return (EXIT_FAILURE);
+	}
+	while (env)
+	{
+		if (env->key || (env->key && env->value))
+			printf("%s=%s\n", env->key, env->value);
+		env = env->next;
+	}
 	return (EXIT_SUCCESS);
 }

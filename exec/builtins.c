@@ -106,11 +106,76 @@ int ft_pwd(t_ast *ast)
 	return (EXIT_SUCCESS);
 }
 
+void add_env_var(t_env *env, char *key, char *value)
+{
+	t_env *current;
+	
+	current  = env;
+	while (current)
+	{
+		if (strcmp(current->key, key) == 0)
+		{
+			free(current->value);
+			current->value = ft_strdup(value);
+			return;
+		}
+		current = current->next;
+	}
+
+	t_env *new_node;
+
+	new_node  = malloc(sizeof(t_env));
+    if (!new_node)
+    {
+        perror("malloc failed");
+        exit(EXIT_FAILURE);
+    }
+    new_node->key = ft_strdup(key);
+    new_node->value = ft_strdup(value);
+	printf("new_node->key: %s\n", new_node->key);
+	printf("new_node->value: %s\n", new_node->value);
+    new_node->next = env;
+    env = new_node;
+	printf("env key : %s\n", env->key);
+	printf("env value : %s\n", env->value); 
+}
+
 int ft_export(t_ast *ast, t_env *env)
 {
-	(void)ast;
-	(void)env;
-	printf("export: not implemented yet\n");
-	
+
+	char *key;
+	char *value;
+	t_env *current;
+
+	key = NULL;
+	value = NULL;
+	current = env;
+	if (ast->args[1] == NULL)
+	{
+		while (current)
+		{
+			if (current->key && current->value)
+			printf("declare -x %s=%s\n", current->key, current->value);
+			current = current->next;
+		}
+	}
+	else
+	{
+		while (ast->args[1])
+		{
+			key = ast->args[1];
+			value = strchr(key, '=');
+			if (value)
+			{
+				*value = '\0';
+				value++;
+				add_env_var(env, key, value);
+			}
+			else
+				add_env_var(env, key, NULL);
+			printf("env key: %s\n", env->key);
+			ast->args++;
+		}
+	}
 	return (EXIT_SUCCESS);
 }

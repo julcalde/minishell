@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fileonar <fileonar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fefo <fefo@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 18:33:32 by fileonar          #+#    #+#             */
-/*   Updated: 2025/04/02 15:36:42 by fileonar         ###   ########.fr       */
+/*   Updated: 2025/04/18 19:32:49 by fefo             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ typedef struct s_tokens
 //LIBFT UTILS
 int		ft_isdigit(int a);
 int		ft_atoi(const char *str);
+char	**ft_split(char const *s, char c);
+
 
 // EXEGGCUTE_UTILS.C: Utility functions for executing commands.
 

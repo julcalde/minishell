@@ -26,6 +26,7 @@ EXEC_SRC = exec/builtins.c \
 		exec/executor.c \
 		exec/libft_utils.c \
 		exec/builtins2.c \
+		exec/split.c \
 
 
 OBJS = $(SRCS:.c=.o) $(PARSER_SRCS:.c=.o) $(EXEC_SRC:.c=.o)

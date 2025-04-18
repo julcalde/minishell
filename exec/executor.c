@@ -17,10 +17,10 @@ int	is_builtin(char *command)
 {
 	if (!command)
 		return (1);
-	if (ft_strcmp(command, "echo") || ft_strcmp(command, "cd")
-		|| ft_strcmp(command, "pwd") || ft_strcmp(command, "export")
-		|| ft_strcmp(command, "unset") || ft_strcmp(command, "env")
-		|| ft_strcmp(command, "exit"))
+	if (ft_strcmp(command, "echo") == 0 || ft_strcmp(command, "cd" ) == 0
+		|| ft_strcmp(command, "pwd") == 0 || ft_strcmp(command, "export") == 0
+		|| ft_strcmp(command, "unset") == 0 || ft_strcmp(command, "env" )== 0
+		|| ft_strcmp(command, "exit") == 0)
 		return (0);
 	return (1);
 }
@@ -71,7 +71,6 @@ void	external_cmd_exe(t_ast *ast, t_env *env)
 	char	*path;
 	char	**env_array;
 
-	(void)env;
 	path = get_path(ast->command, env);
 	if (!path)
 	{
@@ -83,9 +82,17 @@ void	external_cmd_exe(t_ast *ast, t_env *env)
 	env_array = env_to_array(env);
 	pid = fork();
 	if (pid == 0)
-		execve(path, ast->args, env_array);
+	{
+		if (execve(path, ast->args, env_array) == -1)
+        {
+			perror("execve");
+			exit(EXIT_FAILURE);
+        }
+	}
 	else if (pid > 0)
 		waitpid(pid, NULL, 0);
+	else
+		perror("fork");
 	ft_free_array(env_array);
 	free(path);
 }
